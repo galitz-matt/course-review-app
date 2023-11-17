@@ -47,7 +47,7 @@ public class DatabaseDriver {
                         ID INTEGER PRIMARY KEY,
                         Subject TEXT NOT NULL,
                         Number INTEGER NOT NULL,
-                        Tile TEXT NOT NULL);
+                        Title TEXT NOT NULL);
                         """
             );
             statement.execute(
