@@ -56,6 +56,7 @@ public class DatabaseDriver {
                         ID INTEGER PRIMARY KEY,
                         CourseID INTEGER NOT NULL,
                         UserID INTEGER NOT NULL,
+                        Rating REAL NOT NULL,
                         FOREIGN KEY (CourseID) REFERENCES Courses (ID) ON DELETE CASCADE,
                         FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE);
                         """
