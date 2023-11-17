@@ -32,6 +32,34 @@ public class DatabaseDriver {
     }
 
     public void createTables() throws SQLException {
-
+        try (var statement = connection.createStatement()) {
+            statement.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS Users(
+                        ID INTEGER PRIMARY KEY,
+                        Username TEXT UNIQUE NOT NULL,
+                        Password TEXT NOT NULL);
+                        """
+            );
+            statement.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS Courses(
+                        ID INTEGER PRIMARY KEY,
+                        Subject TEXT NOT NULL,
+                        Number INTEGER NOT NULL,
+                        Tile TEXT NOT NULL);
+                        """
+            );
+            statement.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS Reviews(
+                        ID INTEGER PRIMARY KEY,
+                        CourseID INTEGER NOT NULL,
+                        UserID INTEGER NOT NULL,
+                        FOREIGN KEY (CourseID) REFERENCES Courses (ID) ON DELETE CASCADE,
+                        FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE);
+                        """
+            );
+        }
     }
 }
