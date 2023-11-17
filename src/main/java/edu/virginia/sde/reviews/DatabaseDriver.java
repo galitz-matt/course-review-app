@@ -6,12 +6,8 @@ public class DatabaseDriver {
     private final String sqliteFilename;
     private Connection connection;
 
-//    public DatabaseDriver(Configuration configuration) {
-//        this.sqliteFilename = configuration.getDatabaseFilename();
-//    }
-
-    public DatabaseDriver(String sqlListDatabaseFilename) {
-        this.sqliteFilename = sqlListDatabaseFilename;
+    public DatabaseDriver(Configuration configuration) {
+        this.sqliteFilename = configuration.getDatabaseFilename();
     }
 
     public void connect() throws SQLException {
@@ -33,5 +29,9 @@ public class DatabaseDriver {
 
     public void disconnect() throws SQLException {
         connection.close();
+    }
+
+    public void createTables() throws SQLException {
+
     }
 }
