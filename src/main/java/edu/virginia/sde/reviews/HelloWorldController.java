@@ -9,6 +9,6 @@ public class HelloWorldController {
     private Label messageLabel;
 
     public void handleButton() {
-        messageLabel.setText("You pressed the button!");
+        messageLabel.setText("does this work?");
     }
 }

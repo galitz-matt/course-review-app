@@ -46,7 +46,7 @@ public class DatabaseDriver {
                         CREATE TABLE IF NOT EXISTS Courses(
                         ID INTEGER PRIMARY KEY,
                         Subject TEXT NOT NULL,
-                        Number INTEGER NOT NULL,
+                        Num INTEGER NOT NULL,
                         Title TEXT NOT NULL);
                         """
             );
@@ -63,4 +63,58 @@ public class DatabaseDriver {
             );
         }
     }
+
+    public void addUser(User user) throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+        PreparedStatement statement = connection.prepareStatement(
+                """
+                        INSERT INTO Users(Id, Username, Password) values 
+                            (?, ?, ?)
+                        """);
+        statement.setInt(1, user.getId());
+        statement.setString(2, user.getUsername());
+        statement.setString(3, user.getPassword());
+
+        statement.executeUpdate();
+
+        statement.close();
+    }
+    public void addCourse(Course course) throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+        PreparedStatement statement = connection.prepareStatement(
+                """
+                        INSERT INTO Courses(Id, Subject, Num, Title) values 
+                            (?, ?, ?, ?)
+                        """);
+        statement.setInt(1, course.getId());
+        statement.setString(2, course.getSubject());
+        statement.setInt(3, course.getNumber());
+        statement.setString(4,course.getTitle());
+
+        statement.executeUpdate();
+
+        statement.close();
+    }
+    public void addReview(Review review) throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+        PreparedStatement pstmt = connection.prepareStatement("INSERT INTO Reviews (Id,CourseID, UserID, Rating) VALUES (?, ?, ?,?)");
+            pstmt.setInt(1, review.getId());
+            pstmt.setInt(2, review.getCourseId());
+            pstmt.setInt(3, review.getUserId());
+            pstmt.setDouble(4, review.getRating());
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows == 0) {
+                System.out.println("Review was not added.");
+            }
+            pstmt.close();
+
+        }
+
 }
