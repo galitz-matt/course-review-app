@@ -7,8 +7,9 @@ public class Course {
     private String subject;
     private int number;
     private String title;
+    private double avgRating;
 
-    public Course(int id, String subject, int number, String title) {
+    public Course(int id, String subject, int number, String title,double avgRating) {
         if(subject==null|title==null && subject.length()<=4 && number<=9999 &&title.length()<=50){
             throw new IllegalArgumentException("Illegal course information");
         }
@@ -16,7 +17,17 @@ public class Course {
         this.subject = subject;
         this.number =  number;
         this.title = title;
+        this.avgRating=avgRating;
     }
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
+
     public int getId() {
         return id;
     }

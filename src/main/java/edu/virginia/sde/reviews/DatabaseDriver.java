@@ -47,7 +47,8 @@ public class DatabaseDriver {
                         ID INTEGER PRIMARY KEY,
                         Subject TEXT NOT NULL,
                         Num INTEGER NOT NULL,
-                        Title TEXT NOT NULL);
+                        Title TEXT NOT NULL
+                        AvgRating Real);
                         """
             );
             statement.execute(
@@ -87,13 +88,14 @@ public class DatabaseDriver {
         }
         PreparedStatement statement = connection.prepareStatement(
                 """
-                        INSERT INTO Courses(Id, Subject, Num, Title) values 
-                            (?, ?, ?, ?)
+                        INSERT INTO Courses(Id, Subject, Num, Title,AvgRating) values 
+                            (?, ?, ?, ?,?)
                         """);
         statement.setInt(1, course.getId());
         statement.setString(2, course.getSubject());
         statement.setInt(3, course.getNumber());
         statement.setString(4,course.getTitle());
+        statement.setDouble(5,course.getAvgRating());
 
         statement.executeUpdate();
 
@@ -114,7 +116,6 @@ public class DatabaseDriver {
                 System.out.println("Review was not added.");
             }
             pstmt.close();
-
         }
 
 }
