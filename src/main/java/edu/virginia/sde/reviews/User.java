@@ -6,7 +6,7 @@ public class User {
     private String password;
 
     public User(int id, String username, String password) {
-        if( username == null || password == null ){
+        if( username == null || password == null  && password.length()>=8){
             throw new IllegalArgumentException("Illegal user information");
         }
         this.id = id;

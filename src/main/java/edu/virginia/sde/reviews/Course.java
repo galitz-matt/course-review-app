@@ -9,7 +9,7 @@ public class Course {
     private String title;
 
     public Course(int id, String subject, int number, String title) {
-        if(subject==null|title==null){
+        if(subject==null|title==null && subject.length()<=4 && number<=9999 &&title.length()<=50){
             throw new IllegalArgumentException("Illegal course information");
         }
         this.id = id;
