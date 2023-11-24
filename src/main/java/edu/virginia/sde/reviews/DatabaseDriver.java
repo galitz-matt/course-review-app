@@ -195,25 +195,18 @@ public class DatabaseDriver {
     }
 
     public void clearTables() throws SQLException {
-        try {
-            if (connection.isClosed()) {
-                throw new IllegalStateException("Connection is not open");
-            }
-            var deleteUsers = "DELETE FROM Users;";
-            var deleteCourses = "DELETE FROM Courses;";
-            var deleteReviews = "DELETE FROM Reviews;";
-            var statement1 = connection.prepareStatement(deleteReviews);
-            statement1.executeUpdate();
-            statement1.close();
-            var statement = connection.prepareStatement(deleteUsers);
-            statement.executeUpdate();
-            statement.close();
-            var statement2 = connection.prepareStatement(deleteCourses);
-            statement2.executeUpdate();
-            statement2.close();
+        checkConnection();
+        var deleteUsers = "DELETE FROM Users;";
+        var deleteCourses = "DELETE FROM Courses;";
+        var deleteReviews = "DELETE FROM Reviews;";
+        try (var statement = connection.createStatement()) {
+            statement.execute(deleteUsers);
+            statement.execute(deleteCourses);
+            statement.execute(deleteReviews);
         }
         catch (SQLException e){
-            throw new IllegalStateException("Failed to delete all tables");
+            rollback();
+            throw e;
         }
 
     }
