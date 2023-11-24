@@ -139,23 +139,23 @@ public class DatabaseDriver {
         }
         catch (SQLException e) {
             rollback();
-            throw new SQLException();
+            throw e;
         }
     }
     public void addReview(Review review) throws SQLException{
         checkConnection();
-        PreparedStatement pstmt = connection.prepareStatement("INSERT INTO Reviews (Id,CourseID, UserID, Rating) VALUES (?, ?, ?,?)");
-            pstmt.setInt(1, review.getId());
-            pstmt.setInt(2, review.getCourseId());
-            pstmt.setInt(3, review.getUserId());
-            pstmt.setDouble(4, review.getRating());
-
-            int affectedRows = pstmt.executeUpdate();
-            if (affectedRows == 0) {
-                System.out.println("Review was not added.");
-            }
-            pstmt.close();
-        /** need to implement the changes to course.AvgRating after adding a rating to the rating table**/
+        var query = "INSERT INTO Reviews (Id, CourseID, UserID, Rating) VALUES (?, ?, ?, ?);";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, review.getId());
+            preparedStatement.setInt(2, review.getCourseId());
+            preparedStatement.setInt(3, review.getUserId());
+            preparedStatement.setDouble(4, review.getRating());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            rollback();
+            throw e;
+        }
+        //TODO: Update average rating for course, doesn't need to be done to be done immediately
     }
     public List<User> getUsers() throws SQLException{
         if (connection.isClosed()) {
