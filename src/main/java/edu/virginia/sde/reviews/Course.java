@@ -7,7 +7,7 @@ public class Course {
     private String subject;
     private int number;
     private String title;
-    private double avgRating;
+    private double averageRating;
 
     public Course(int id, String subject, int number, String title,double avgRating) {
         if(subject==null|title==null && subject.length()<=4 && number<=9999 &&title.length()<=50){
@@ -17,15 +17,15 @@ public class Course {
         this.subject = subject;
         this.number =  number;
         this.title = title;
-        this.avgRating=avgRating;
+        this.averageRating =avgRating;
     }
 
-    public double getAvgRating() {
-        return avgRating;
+    public double getAverageRating() {
+        return averageRating;
     }
 
-    public void setAvgRating(double avgRating) {
-        this.avgRating = avgRating;
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
     }
 
     public int getId() {
