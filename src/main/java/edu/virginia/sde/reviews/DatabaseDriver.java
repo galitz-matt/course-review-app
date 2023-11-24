@@ -182,21 +182,15 @@ public class DatabaseDriver {
         return courses;
     }
     public List<Review> getReviews() throws SQLException{
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
+        checkConnection();
+        var reviews = new ArrayList<Review>();
+        var query = "SELECT * FROM Reviews";
+        try (var statement = connection.prepareStatement(query)) {
+            var resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                reviews.add(getReview(resultSet));
+            }
         }
-        List<Review> reviews = new ArrayList<>();
-
-        String query = "SELECT * FROM Reviews";
-
-        PreparedStatement statement = connection.prepareStatement(query);
-
-        ResultSet resultSet = statement.executeQuery();
-
-        while(resultSet.next()){
-            reviews.add(getReview(resultSet));
-        }
-        statement.close();
         return reviews;
     }
 
