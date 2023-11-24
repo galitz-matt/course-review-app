@@ -172,17 +172,13 @@ public class DatabaseDriver {
     public List<Course> getCourses() throws SQLException{
         checkConnection();
         var courses = new ArrayList<Course>();
-
         var query = "SELECT * FROM Courses";
-
-        PreparedStatement statement = connection.prepareStatement(query);
-
-        ResultSet resultSet = statement.executeQuery();
-
-        while(resultSet.next()){
-            courses.add(getCourse(resultSet));
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            var resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                courses.add(getCourse(resultSet));
+            }
         }
-        statement.close();
         return courses;
     }
     public List<Review> getReviews() throws SQLException{
