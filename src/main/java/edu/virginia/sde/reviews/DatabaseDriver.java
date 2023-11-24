@@ -87,8 +87,8 @@ public class DatabaseDriver {
                         CREATE TABLE IF NOT EXISTS Courses(
                         ID INTEGER PRIMARY KEY,
                         Subject TEXT NOT NULL,
-                        Num INTEGER NOT NULL,
-                        Title TEXT NOT NULL
+                        Number INTEGER NOT NULL,
+                        Title TEXT NOT NULL,
                         AvgRating Real);
                         """
             );
@@ -106,11 +106,11 @@ public class DatabaseDriver {
         }
     }
 
-    public void addUser(User user) throws SQLException{
+    public void addUser(User user) throws SQLException {
         if (connection.isClosed()) {
             throw new IllegalStateException("Connection is not open");
         }
-        PreparedStatement statement = connection.prepareStatement(
+        var statement = connection.prepareStatement(
                 """
                         INSERT INTO Users(Id, Username, Password) values 
                             (?, ?, ?)
@@ -118,26 +118,23 @@ public class DatabaseDriver {
         statement.setInt(1, user.getId());
         statement.setString(2, user.getUsername());
         statement.setString(3, user.getPassword());
-
         statement.executeUpdate();
-
         statement.close();
     }
     public void addCourse(Course course) throws SQLException{
         if (connection.isClosed()) {
             throw new IllegalStateException("Connection is not open");
         }
-        PreparedStatement statement = connection.prepareStatement(
-                """
-                        INSERT INTO Courses(Id, Subject, Num, Title,AvgRating) values 
-                            (?, ?, ?, ?,?)
+        var statement = connection.prepareStatement(
+                    """
+                        INSERT INTO Courses(Id, Subject, Number, Title, AvgRating) VALUES 
+                            (?, ?, ?, ?, ?)
                         """);
         statement.setInt(1, course.getId());
         statement.setString(2, course.getSubject());
         statement.setInt(3, course.getNumber());
         statement.setString(4,course.getTitle());
         statement.setDouble(5,course.getAvgRating());
-
         statement.executeUpdate();
 
         statement.close();
@@ -219,21 +216,20 @@ public class DatabaseDriver {
             if (connection.isClosed()) {
                 throw new IllegalStateException("Connection is not open");
             }
-            String deleteUsers = "DELETE FROM Users;";
-            String deleteCourses = "DELETE FROM Courses;";
-            String deleteReviews = "DELETE FROM Reviews;";
-            PreparedStatement statement1 = connection.prepareStatement(deleteReviews);
+            var deleteUsers = "DELETE FROM Users;";
+            var deleteCourses = "DELETE FROM Courses;";
+            var deleteReviews = "DELETE FROM Reviews;";
+            var statement1 = connection.prepareStatement(deleteReviews);
             statement1.executeUpdate();
             statement1.close();
-            PreparedStatement statement = connection.prepareStatement(deleteUsers);
+            var statement = connection.prepareStatement(deleteUsers);
             statement.executeUpdate();
             statement.close();
-            PreparedStatement statement2 = connection.prepareStatement(deleteCourses);
+            var statement2 = connection.prepareStatement(deleteCourses);
             statement2.executeUpdate();
             statement2.close();
         }
         catch (SQLException e){
-            e.printStackTrace();
             throw new IllegalStateException("Failed to delete all tables");
         }
 
