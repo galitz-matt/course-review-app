@@ -165,9 +165,9 @@ public class DatabaseDriver {
             var resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 var user = new User(
-                        resultSet.getInt("ID"),
-                        resultSet.getString("Username"),
-                        resultSet.getString("Password")
+                        resultSet.getInt(USER_ID),
+                        resultSet.getString(USER_USERNAME),
+                        resultSet.getString(USER_PASSWORD)
                 );
                 users.add(user);
             }
