@@ -37,7 +37,7 @@ public class DatabaseDriver {
         var number = resultSet.getInt(COURSES_NUMBER);
         var title = resultSet.getString(Courses_TITLE);
         var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
-        return new Course(id, subject,  number,title,avgRating);
+        return new Course(id, subject, number, title, avgRating);
     }
     private Review getReview(ResultSet resultSet) throws SQLException {
         var id = resultSet.getInt(REVIEWS_ID);
@@ -164,23 +164,16 @@ public class DatabaseDriver {
         try (var statement = connection.prepareStatement(query)) {
             var resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                var user = new User(
-                        resultSet.getInt(USER_ID),
-                        resultSet.getString(USER_USERNAME),
-                        resultSet.getString(USER_PASSWORD)
-                );
-                users.add(user);
+                users.add(getUser(resultSet));
             }
         }
         return users;
     }
     public List<Course> getCourses() throws SQLException{
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
-        }
-        List<Course> courses = new ArrayList<>();
+        checkConnection();
+        var courses = new ArrayList<Course>();
 
-        String query = "SELECT * FROM Courses";
+        var query = "SELECT * FROM Courses";
 
         PreparedStatement statement = connection.prepareStatement(query);
 
