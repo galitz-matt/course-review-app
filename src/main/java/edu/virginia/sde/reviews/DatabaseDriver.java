@@ -136,8 +136,7 @@ public class DatabaseDriver {
             preparedStatement.setString(4, course.getTitle());
             preparedStatement.setDouble(5, course.getAvgRating());
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             rollback();
             throw e;
         }
@@ -203,12 +202,10 @@ public class DatabaseDriver {
             statement.execute(deleteUsers);
             statement.execute(deleteCourses);
             statement.execute(deleteReviews);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             rollback();
             throw e;
         }
 
     }
-
 }
