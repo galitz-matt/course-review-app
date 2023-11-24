@@ -158,21 +158,20 @@ public class DatabaseDriver {
         //TODO: Update average rating for course, doesn't need to be done to be done immediately
     }
     public List<User> getUsers() throws SQLException{
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
+        checkConnection();
+        var users = new ArrayList<User>();
+        var query = "SELECT * FROM Users";
+        try (var statement = connection.prepareStatement(query)) {
+            var resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                var user = new User(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("Username"),
+                        resultSet.getString("Password")
+                );
+                users.add(user);
+            }
         }
-        List<User> users = new ArrayList<>();
-
-        String query = "SELECT * FROM Users";
-
-        PreparedStatement statement = connection.prepareStatement(query);
-
-        ResultSet resultSet = statement.executeQuery();
-
-        while(resultSet.next()){
-            users.add(getUser(resultSet));
-        }
-        statement.close();
         return users;
     }
     public List<Course> getCourses() throws SQLException{
