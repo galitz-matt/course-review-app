@@ -7,10 +7,10 @@ public class Review {
     private double rating;
 
     public Review(int id, int courseId, int userId, double rating) {
-        this.id=id;
+        this.id = id;
         this.courseId = courseId;
         this.userId = userId;
-        this.rating= rating;
+        this.rating = rating;
     }
 
     public int getId() {
