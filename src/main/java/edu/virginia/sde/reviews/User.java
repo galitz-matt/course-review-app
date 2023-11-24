@@ -6,12 +6,19 @@ public class User {
     private String password;
 
     public User(int id, String username, String password) {
-        if( username == null || password == null  && password.length()>=8){
-            throw new IllegalArgumentException("Illegal user information");
-        }
+        verifyInfo(username, password);
         this.id = id;
         this.username= username;
         this.password = password;
+    }
+
+    private void verifyInfo(String username, String password) {
+        if (username == null || password == null) {
+            throw new IllegalArgumentException("User information cannot be empty");
+        }
+        if (password.length() >= 8) {
+            throw new IllegalArgumentException("Password must be less than 8 characters");
+        }
     }
 
     public int getId() {
