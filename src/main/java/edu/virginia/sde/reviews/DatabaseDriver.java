@@ -204,7 +204,7 @@ public class DatabaseDriver {
             statement.execute(deleteCourses);
             statement.execute(deleteReviews);
         }
-        catch (SQLException e){
+        catch (SQLException e) {
             rollback();
             throw e;
         }
