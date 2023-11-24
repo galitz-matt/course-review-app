@@ -72,6 +72,12 @@ public class DatabaseDriver {
         connection.close();
     }
 
+    public void checkConnection() throws SQLException {
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+    }
+
     public void createTables() throws SQLException {
         try (var statement = connection.createStatement()) {
             statement.execute(
@@ -107,19 +113,18 @@ public class DatabaseDriver {
     }
 
     public void addUser(User user) throws SQLException {
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
+        checkConnection();
+        var query = "INSERT INTO Users(Id, Username, Password) VALUES (?, ?, ?);";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            var statement = connection.prepareStatement(query);
+            statement.setInt(1, user.getId());
+            statement.setString(2, user.getUsername());
+            statement.setString(3, user.getPassword());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            rollback();
+            throw e;
         }
-        var statement = connection.prepareStatement(
-                """
-                        INSERT INTO Users(Id, Username, Password) values 
-                            (?, ?, ?)
-                        """);
-        statement.setInt(1, user.getId());
-        statement.setString(2, user.getUsername());
-        statement.setString(3, user.getPassword());
-        statement.executeUpdate();
-        statement.close();
     }
     public void addCourse(Course course) throws SQLException{
         if (connection.isClosed()) {
@@ -127,7 +132,7 @@ public class DatabaseDriver {
         }
         var statement = connection.prepareStatement(
                     """
-                        INSERT INTO Courses(Id, Subject, Number, Title, AvgRating) VALUES 
+                        INSERT INTO Courses(Id, Subject, Number, Title, AvgRating) VALUES
                             (?, ?, ?, ?, ?)
                         """);
         statement.setInt(1, course.getId());
