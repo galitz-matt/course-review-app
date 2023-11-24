@@ -127,27 +127,23 @@ public class DatabaseDriver {
         }
     }
     public void addCourse(Course course) throws SQLException{
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
+        checkConnection();
+        var query = "INSERT INTO Courses(Id, Subject, Number, Title, AvgRating) VALUES (?, ?, ?, ?, ?)";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, course.getId());
+            preparedStatement.setString(2, course.getSubject());
+            preparedStatement.setInt(3, course.getNumber());
+            preparedStatement.setString(4, course.getTitle());
+            preparedStatement.setDouble(5, course.getAvgRating());
+            preparedStatement.executeUpdate();
         }
-        var statement = connection.prepareStatement(
-                    """
-                        INSERT INTO Courses(Id, Subject, Number, Title, AvgRating) VALUES
-                            (?, ?, ?, ?, ?)
-                        """);
-        statement.setInt(1, course.getId());
-        statement.setString(2, course.getSubject());
-        statement.setInt(3, course.getNumber());
-        statement.setString(4,course.getTitle());
-        statement.setDouble(5,course.getAvgRating());
-        statement.executeUpdate();
-
-        statement.close();
+        catch (SQLException e) {
+            rollback();
+            throw new SQLException();
+        }
     }
     public void addReview(Review review) throws SQLException{
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
-        }
+        checkConnection();
         PreparedStatement pstmt = connection.prepareStatement("INSERT INTO Reviews (Id,CourseID, UserID, Rating) VALUES (?, ?, ?,?)");
             pstmt.setInt(1, review.getId());
             pstmt.setInt(2, review.getCourseId());
