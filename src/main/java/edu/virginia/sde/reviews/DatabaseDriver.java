@@ -1,10 +1,51 @@
 package edu.virginia.sde.reviews;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseDriver {
     private final String sqliteFilename;
     private Connection connection;
+    public final String USERS_TABLE = "Users",
+            USER_ID = "ID",
+            USER_USERNAME = "Username",
+            USER_PASSWORD = "Password";
+    public final String COURSES_TABLE = "Courses",
+            COURSES_ID = "ID",
+            COURSES_SUBJECT = "Subject",
+            COURSES_NUMBER = "Num",
+            Courses_TITLE = "Title",
+            COURSES_AVG_RATING = "AvgRating";
+
+    /* Routes Column Names */
+    public final String REVIEWS_TABLE = "Reviews",
+            REVIEWS_ID = "ID",
+            REVIEWS_COURSEID = "CourseID",
+            REVIEWS_USERID = "UserID",
+            REVIEWS_RATING = "Rating";
+
+    private User getUser(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(USER_ID);
+        var username = resultSet.getString(USER_USERNAME);
+        var password = resultSet.getString(USER_PASSWORD);
+        return new User(id, username,password);
+    }
+    private Course getCourse(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(COURSES_ID);
+        var subject = resultSet.getString(COURSES_SUBJECT);
+        var number = resultSet.getInt(COURSES_NUMBER);
+        var title = resultSet.getString(Courses_TITLE);
+        var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
+        return new Course(id, subject,  number,title,avgRating);
+    }
+    private Review getReview(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(REVIEWS_ID);
+        var courseID = resultSet.getInt(REVIEWS_COURSEID);
+        var userID = resultSet.getInt(REVIEWS_USERID);
+        var rating = resultSet.getDouble(REVIEWS_RATING);
+        return new Review(id, courseID,userID,rating);
+    }
 
     public DatabaseDriver(Configuration configuration) {
         this.sqliteFilename = configuration.getDatabaseFilename();
@@ -116,6 +157,86 @@ public class DatabaseDriver {
                 System.out.println("Review was not added.");
             }
             pstmt.close();
+        /** need to implement the changes to course.AvgRating after adding a rating to the rating table**/
+    }
+    public List<User> getUsers() throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
         }
+        List<User> users = new ArrayList<>();
+
+        String query = "SELECT * FROM Users";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()){
+            users.add(getUser(resultSet));
+        }
+        statement.close();
+        return users;
+    }
+    public List<Course> getCourses() throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+        List<Course> courses = new ArrayList<>();
+
+        String query = "SELECT * FROM Courses";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()){
+            courses.add(getCourse(resultSet));
+        }
+        statement.close();
+        return courses;
+    }
+    public List<Review> getReviews() throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+        List<Review> reviews = new ArrayList<>();
+
+        String query = "SELECT * FROM Reviews";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()){
+            reviews.add(getReview(resultSet));
+        }
+        statement.close();
+        return reviews;
+    }
+
+    public void clearTables() throws SQLException {
+        try {
+            if (connection.isClosed()) {
+                throw new IllegalStateException("Connection is not open");
+            }
+            String deleteUsers = "DELETE FROM Users;";
+            String deleteCourses = "DELETE FROM Courses;";
+            String deleteReviews = "DELETE FROM Reviews;";
+            PreparedStatement statement1 = connection.prepareStatement(deleteReviews);
+            statement1.executeUpdate();
+            statement1.close();
+            PreparedStatement statement = connection.prepareStatement(deleteUsers);
+            statement.executeUpdate();
+            statement.close();
+            PreparedStatement statement2 = connection.prepareStatement(deleteCourses);
+            statement2.executeUpdate();
+            statement2.close();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            throw new IllegalStateException("Failed to delete all tables");
+        }
+
+    }
 
 }
