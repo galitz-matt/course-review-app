@@ -151,12 +151,38 @@ public class DatabaseDriver {
             preparedStatement.setInt(3, review.getUserId());
             preparedStatement.setDouble(4, review.getRating());
             preparedStatement.executeUpdate();
+            updateCourseAverageRating(review.getCourseId());
         } catch (SQLException e) {
             rollback();
             throw e;
         }
-        //TODO: Update average rating for course, doesn't need to be done to be done immediately
     }
+
+    public void updateCourseAverageRating(int courseId) throws SQLException{
+        if (connection.isClosed()) {
+            throw new IllegalStateException("Connection is not open");
+        }
+        String selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?";
+        String updateSql = "UPDATE Courses SET AverageRating = ? WHERE ID = ?";
+        PreparedStatement statement1 = connection.prepareStatement("SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?");
+        PreparedStatement statement2 = connection.prepareStatement("UPDATE Courses SET AverageRating = ? WHERE ID = ?;");
+        statement1.setInt(1,courseId);
+        ResultSet resultSet = statement1.executeQuery();
+        if (resultSet.next()) {
+            double averageRating = resultSet.getDouble("AverageRating");
+
+            // Update the Courses table
+            statement2.setDouble(1, averageRating);
+            statement2.setInt(2, courseId);
+            int affectedRows = statement2.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Average rating updated successfully for course ID " + courseId);
+            } else {
+                System.out.println("Course not found or no reviews available for course ID " + courseId);
+            }
+        }
+    }
+
     public List<User> getUsers() throws SQLException{
         checkConnection();
         var users = new ArrayList<User>();
