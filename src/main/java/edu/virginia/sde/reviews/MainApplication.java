@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import static javafx.application.Application.launch;
 
-public class LoginApplication extends Application {
+public class MainApplication extends Application {
 
     public static void main(String[] args) { launch(args); }
 
