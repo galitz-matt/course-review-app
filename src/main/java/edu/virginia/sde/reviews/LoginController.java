@@ -39,6 +39,7 @@ public class LoginController {
 
     @FXML
     private void handleNewUserAction() {
+        errorMessageLabel.setText("");
         mainController.switchToNewUserSetup();
     }
 
