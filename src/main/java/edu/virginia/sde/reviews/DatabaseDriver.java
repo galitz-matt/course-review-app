@@ -168,7 +168,7 @@ public class DatabaseDriver {
         statement1.setInt(1,courseId);
         ResultSet resultSet = statement1.executeQuery();
         if (resultSet.next()) {
-            double averageRating = resultSet.getDouble("AverageRating");
+            double averageRating = resultSet.getDouble("AvgRating");
             statement2.setDouble(1, averageRating);
             statement2.setInt(2, courseId);
             int affectedRows = statement2.executeUpdate();
@@ -207,7 +207,7 @@ public class DatabaseDriver {
         }
         return courses;
     }
-    public List<Review> getReviews() throws SQLException{
+    public List<Review> getReviews() throws SQLException {
         checkConnection();
         var reviews = new ArrayList<Review>();
         var query = "SELECT * FROM Reviews";
@@ -219,6 +219,19 @@ public class DatabaseDriver {
             }
         }
         return reviews;
+    }
+
+    public boolean isUserInDatabase(String username) throws SQLException {
+        String query = "SELECT EXISTS(SELECT 1 FROM Users WHERE Username = ?);";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            try (var resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBoolean(1);
+                }
+            }
+        }
+        return false;
     }
 
     public void clearTables() throws SQLException {
