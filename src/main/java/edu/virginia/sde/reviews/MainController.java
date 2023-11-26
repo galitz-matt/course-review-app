@@ -23,6 +23,7 @@ public class MainController {
             loginScene = new Scene(loginLoader.load());
             LoginController loginController = loginLoader.getController();
             loginController.setMainController(this);
+            loginController.setLoginService(new LoginService(new DatabaseDriver(new Configuration())));
 
             var newUserLoader = new FXMLLoader(getClass().getResource("NewUserScreen.fxml"));
             newUserScene = new Scene(newUserLoader.load());

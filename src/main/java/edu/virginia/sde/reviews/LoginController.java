@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 
 public class LoginController {
     private MainController mainController;
+    private LoginService loginService;
     @FXML
     private TextField usernameField;
     @FXML
@@ -20,11 +21,12 @@ public class LoginController {
         this.mainController = mainController;
     }
 
+    protected void setLoginService(LoginService loginService) { this.loginService = loginService; }
+
     @FXML
     private void handleLoginAction() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        var loginService = new LoginService(new DatabaseDriver(new Configuration()));
         try {
             var user = loginService.getUser(username, password);
             // TODO: switch to course selection screen
