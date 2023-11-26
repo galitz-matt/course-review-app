@@ -158,22 +158,20 @@ public class DatabaseDriver {
     }
 
     public void updateCourseAverageRating(int courseId) throws SQLException{
-        if (connection.isClosed()) {
-            throw new IllegalStateException("Connection is not open");
-        }
-        String selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?";
-        String updateSql = "UPDATE Courses SET AverageRating = ? WHERE ID = ?";
-        PreparedStatement statement1 = connection.prepareStatement("SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?");
-        PreparedStatement statement2 = connection.prepareStatement("UPDATE Courses SET AverageRating = ? WHERE ID = ?;");
+        checkConnection();
+        var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
+        var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
+        // TODO: optimize this, more robust statement intialization (try w/ resources),
+        var statement1 = connection.prepareStatement(selectSql);
+        var statement2 = connection.prepareStatement(updateSql);
         statement1.setInt(1,courseId);
         ResultSet resultSet = statement1.executeQuery();
         if (resultSet.next()) {
             double averageRating = resultSet.getDouble("AverageRating");
-
-            // Update the Courses table
             statement2.setDouble(1, averageRating);
             statement2.setInt(2, courseId);
             int affectedRows = statement2.executeUpdate();
+            // TODO: consider error-checking in business logic instead
             if (affectedRows > 0) {
                 System.out.println("Average rating updated successfully for course ID " + courseId);
             } else {
