@@ -16,5 +16,8 @@
         <PasswordField fx:id="confirmPasswordField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
     </GridPane>
     <Label fx:id="errorMessageLabel"/>
-    <Button text="Create Account" fx:id="createAccountButton" minWidth="80" alignment="CENTER" onAction="#handleCreateAccountAction"/>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Create Account" fx:id="createAccountButton" minWidth="80" onAction="#handleCreateAccountAction"/>
+        <Button text="Go Back" fx:id="goBackButton" minWidth="80" onAction="#handleGoBackButton"/>
+    </HBox>
 </VBox>
