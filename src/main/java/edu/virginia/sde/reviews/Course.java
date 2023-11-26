@@ -10,21 +10,11 @@ public class Course {
     private double avgRating;
 
     public Course(int id, String subject, int number, String title,double avgRating) {
-        verifyInfo(subject, number, title);
         this.id = id;
         this.subject = subject;
         this.number =  number;
         this.title = title;
         this.avgRating = avgRating;
-    }
-
-    private void verifyInfo(String subject, int number, String title) {
-        if (subject == null || title == null) {
-            throw new IllegalArgumentException("Illegal course information");
-        }
-        if (subject.length() <= 4 && number <= 9999 && title.length() <= 50) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public double getAvgRating() {
