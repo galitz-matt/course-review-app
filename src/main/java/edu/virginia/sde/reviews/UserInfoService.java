@@ -2,10 +2,10 @@ package edu.virginia.sde.reviews;
 
 import java.sql.SQLException;
 
-public class LoginService {
+public class UserInfoService {
     private final DatabaseDriver databaseDriver;
 
-    public LoginService(DatabaseDriver databaseDriver) {
+    public UserInfoService(DatabaseDriver databaseDriver) {
         this.databaseDriver = databaseDriver;
     }
 

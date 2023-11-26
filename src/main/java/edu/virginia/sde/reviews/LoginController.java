@@ -1,13 +1,12 @@
 package edu.virginia.sde.reviews;
 
-import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
 public class LoginController {
     private MainController mainController;
-    private LoginService loginService;
+    private UserInfoService userInfoService;
     @FXML
     private TextField usernameField;
     @FXML
@@ -21,14 +20,14 @@ public class LoginController {
         this.mainController = mainController;
     }
 
-    protected void setLoginService(LoginService loginService) { this.loginService = loginService; }
+    protected void setLoginService(UserInfoService userInfoService) { this.userInfoService = userInfoService; }
 
     @FXML
     private void handleLoginAction() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         try {
-            var user = loginService.getUser(username, password);
+            var user = userInfoService.getUser(username, password);
             // TODO: switch to course selection screen
         } catch (InvalidUsernameException e) {
             errorMessageLabel.setText("Username is incorrect or does not exist");
