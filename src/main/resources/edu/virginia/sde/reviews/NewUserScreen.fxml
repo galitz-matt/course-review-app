@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -17,7 +14,7 @@
     </GridPane>
     <Label fx:id="errorMessageLabel"/>
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Create Account" fx:id="createAccountButton" minWidth="80" onAction="#handleCreateAccountAction"/>
-        <Button text="Go Back" fx:id="goBackButton" minWidth="80" onAction="#handleGoBackButton"/>
+        <Button text="Create Account" minWidth="80" onAction="#handleCreateAccountAction"/>
+        <Button text="Go Back" minWidth="80" onAction="#handleGoBackAction"/>
     </HBox>
 </VBox>
