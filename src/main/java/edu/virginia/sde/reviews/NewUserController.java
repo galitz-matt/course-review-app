@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class NewUserController {
+    private MainController mainController;
     @FXML
     private TextField usernameField;
     @FXML
@@ -12,6 +13,10 @@ public class NewUserController {
     private PasswordField confirmPasswordField;
     @FXML
     private Label errorMessageLabel;
+
+    protected void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 
     @FXML
     private void handleCreateAccountAction() {
@@ -23,6 +28,6 @@ public class NewUserController {
 
     @FXML
     private void handleGoBackAction() {
-        // TODO: go back to login screen
+        mainController.switchToLogin();
     }
 }

@@ -1,10 +1,12 @@
 package edu.virginia.sde.reviews;
 
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
 public class LoginController {
+    private MainController mainController;
     @FXML
     private TextField usernameField;
     @FXML
@@ -13,6 +15,10 @@ public class LoginController {
     private Label errorMessageLabel;
     @FXML
     private Button exitButton;
+
+    protected void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 
     @FXML
     private void handleLoginAction() {
@@ -24,7 +30,7 @@ public class LoginController {
 
     @FXML
     private void handleNewUserAction() {
-        // TODO: switch to set up screen
+        mainController.switchToNewUserSetup();
     }
 
     @FXML

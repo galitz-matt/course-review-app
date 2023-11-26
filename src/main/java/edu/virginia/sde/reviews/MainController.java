@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainController {
-    private Stage primaryStage;
+    private final Stage primaryStage;
     private Scene loginScene;
     private Scene newUserScene;
 
@@ -19,8 +19,15 @@ public class MainController {
 
     private void initScenes() {
         try {
-            loginScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginScreen.fxml"))));
-            newUserScene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("NewUserScreen.fxml"))));
+            var loginLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
+            loginScene = new Scene(loginLoader.load());
+            LoginController loginController = loginLoader.getController();
+            loginController.setMainController(this);
+
+            var newUserLoader = new FXMLLoader(getClass().getResource("NewUserScreen.fxml"));
+            newUserScene = new Scene(newUserLoader.load());
+            NewUserController newUserController = newUserLoader.getController();
+            newUserController.setMainController(this);
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
