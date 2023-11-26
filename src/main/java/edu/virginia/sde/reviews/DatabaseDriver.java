@@ -25,6 +25,18 @@ public class DatabaseDriver {
             REVIEWS_USERID = "UserID",
             REVIEWS_RATING = "Rating";
 
+    public void commit() throws SQLException {
+        connection.commit();
+    }
+
+    public void rollback() throws SQLException {
+        connection.rollback();
+    }
+
+    public void disconnect() throws SQLException {
+        connection.close();
+    }
+
     private User getUser(ResultSet resultSet) throws SQLException {
         var id = resultSet.getInt(USER_ID);
         var username = resultSet.getString(USER_USERNAME);
@@ -58,18 +70,6 @@ public class DatabaseDriver {
         connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFilename);
         connection.createStatement().execute("PRAGMA foreign_keys = ON");
         connection.setAutoCommit(false);
-    }
-
-    public void commit() throws SQLException {
-        connection.commit();
-    }
-
-    public void rollback() throws SQLException {
-        connection.rollback();
-    }
-
-    public void disconnect() throws SQLException {
-        connection.close();
     }
 
     public void checkConnection() throws SQLException {
