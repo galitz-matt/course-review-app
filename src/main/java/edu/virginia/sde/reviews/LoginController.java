@@ -1,9 +1,8 @@
 package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 public class LoginController {
     @FXML
@@ -12,6 +11,8 @@ public class LoginController {
     private PasswordField passwordField;
     @FXML
     private Label errorMessageLabel;
+    @FXML
+    private Button exitButton;
 
     @FXML
     private void handleLoginAction() {
@@ -24,5 +25,11 @@ public class LoginController {
     @FXML
     private void handleNewUserAction() {
         // TODO: switch to set up screen
+    }
+
+    @FXML
+    private void handleExitAction() {
+        var stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 }
