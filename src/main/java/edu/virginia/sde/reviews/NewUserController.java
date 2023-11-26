@@ -28,6 +28,7 @@ public class NewUserController {
 
     @FXML
     private void handleGoBackAction() {
+        errorMessageLabel.setText("");
         mainController.switchToLogin();
     }
 }
