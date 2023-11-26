@@ -2,8 +2,7 @@ package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-
-import java.awt.*;
+import javafx.scene.control.TextField;
 
 public class LoginController {
     @FXML
