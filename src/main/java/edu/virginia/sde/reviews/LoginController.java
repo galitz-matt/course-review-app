@@ -20,7 +20,7 @@ public class LoginController {
         this.mainController = mainController;
     }
 
-    protected void setLoginService(UserInfoService userInfoService) { this.userInfoService = userInfoService; }
+    protected void setUserInfoService(UserInfoService userInfoService) { this.userInfoService = userInfoService; }
 
     @FXML
     private void handleLoginAction() {

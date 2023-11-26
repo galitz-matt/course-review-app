@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 
 public class NewUserController {
     private MainController mainController;
+    private UserInfoService userInfoService;
     @FXML
     private TextField usernameField;
     @FXML
@@ -17,6 +18,7 @@ public class NewUserController {
     protected void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
+    protected void setUserInfoService(UserInfoService userInfoService) { this.userInfoService = userInfoService; }
 
     @FXML
     private void handleCreateAccountAction() {

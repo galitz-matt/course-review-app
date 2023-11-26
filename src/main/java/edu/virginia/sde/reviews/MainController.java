@@ -16,16 +16,19 @@ public class MainController {
 
     private void initScenes() {
         try {
+            var userInfoService = new UserInfoService(new DatabaseDriver(new Configuration()));
+
             var loginLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
             loginScene = new Scene(loginLoader.load());
             LoginController loginController = loginLoader.getController();
             loginController.setMainController(this);
-            loginController.setLoginService(new UserInfoService(new DatabaseDriver(new Configuration())));
+            loginController.setUserInfoService(userInfoService);
 
             var newUserLoader = new FXMLLoader(getClass().getResource("NewUserScreen.fxml"));
             newUserScene = new Scene(newUserLoader.load());
             NewUserController newUserController = newUserLoader.getController();
             newUserController.setMainController(this);
+            newUserController.setUserInfoService(userInfoService);
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
