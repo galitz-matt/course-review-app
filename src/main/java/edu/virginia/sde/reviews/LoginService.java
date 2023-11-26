@@ -9,13 +9,24 @@ public class LoginService {
         this.databaseDriver = databaseDriver;
     }
 
-    public User getUser(String username) throws SQLException {
-        databaseDriver.connect();
-        var user = databaseDriver.getUser(username);
-        databaseDriver.disconnect();
+    public User getUser(String username, String password){
+        try {
+            databaseDriver.connect();
+            var user = databaseDriver.getUser(username);
+            databaseDriver.disconnect();
+            verifyUserInfo(user, password);
+            return user;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void verifyUserInfo(User user, String password) {
         if (user == null) {
             throw new InvalidUsernameException();
         }
-        return user;
+        if (!password.equals(user.getPassword())) {
+            throw new IncorrectPasswordException();
+        }
     }
 }

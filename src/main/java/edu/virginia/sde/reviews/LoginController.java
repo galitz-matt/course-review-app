@@ -24,8 +24,15 @@ public class LoginController {
     private void handleLoginAction() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        // TODO: check if username exists -> password is valid
-        // TODO: switch to course selection screen
+        var loginService = new LoginService(new DatabaseDriver(new Configuration()));
+        try {
+            var user = loginService.getUser(username, password);
+            // TODO: switch to course selection screen
+        } catch (InvalidUsernameException e) {
+            errorMessageLabel.setText("Username is incorrect or does not exist");
+        } catch (IncorrectPasswordException e) {
+            errorMessageLabel.setText("Password is incorrect");
+        }
     }
 
     @FXML
