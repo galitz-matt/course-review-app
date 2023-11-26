@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="270.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.LoginController">
-   <children>
-      <VBox layoutX="79.0" layoutY="67.0" prefHeight="200.0" prefWidth="21.0" />
-      <VBox layoutX="30.0" layoutY="35.0" prefHeight="200.0" prefWidth="203.0">
-         <children>
-            <Label fx:id="messageLabel" />
-            <Label text="Press the button" />
-            <Button mnemonicParsing="false" onAction="#handleButton" prefHeight="15.0" prefWidth="60.0" text="Button" />
-         </children>
-      </VBox>
-   </children>
-</AnchorPane>
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1">
+   <GridPane VBox.vgrow="ALWAYS" hgap="10" vgap="10" alignment="CENTER">
+      <Label text="Username" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+      <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+      <Label text="Password" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+      <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+   </GridPane>
+
+   <HBox spacing="10" alignment="CENTER">
+      <Button text="Log-In" fx:id="loginButton" minWidth="80"/>
+      <Button text="New User" fx:id="newUserButton" minWidth="80"/>
+   </HBox>
+</VBox>
