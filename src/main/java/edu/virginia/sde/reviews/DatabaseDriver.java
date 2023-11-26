@@ -25,33 +25,6 @@ public class DatabaseDriver {
             REVIEWS_USERID = "UserID",
             REVIEWS_RATING = "Rating";
 
-    public void commit() throws SQLException {
-        connection.commit();
-    }
-
-    public void rollback() throws SQLException {
-        connection.rollback();
-    }
-
-    public void disconnect() throws SQLException {
-        connection.close();
-    }
-
-    private User getUser(ResultSet resultSet) throws SQLException {
-        var id = resultSet.getInt(USER_ID);
-        var username = resultSet.getString(USER_USERNAME);
-        var password = resultSet.getString(USER_PASSWORD);
-        return new User(id, username,password);
-    }
-    private Course getCourse(ResultSet resultSet) throws SQLException {
-        var id = resultSet.getInt(COURSES_ID);
-        var subject = resultSet.getString(COURSES_SUBJECT);
-        var number = resultSet.getInt(COURSES_NUMBER);
-        var title = resultSet.getString(Courses_TITLE);
-        var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
-        return new Course(id, subject, number, title, avgRating);
-    }
-
     public DatabaseDriver(Configuration configuration) {
         this.sqliteFilename = configuration.getDatabaseFilename();
     }
@@ -65,7 +38,34 @@ public class DatabaseDriver {
         connection.setAutoCommit(false);
     }
 
-    private Review getReview(ResultSet resultSet) throws SQLException {
+    public void commit() throws SQLException {
+        connection.commit();
+    }
+
+    public void rollback() throws SQLException {
+        connection.rollback();
+    }
+
+    public void disconnect() throws SQLException {
+        connection.close();
+    }
+
+    private User buildUser(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(USER_ID);
+        var username = resultSet.getString(USER_USERNAME);
+        var password = resultSet.getString(USER_PASSWORD);
+        return new User(id, username,password);
+    }
+    private Course buildCourse(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(COURSES_ID);
+        var subject = resultSet.getString(COURSES_SUBJECT);
+        var number = resultSet.getInt(COURSES_NUMBER);
+        var title = resultSet.getString(Courses_TITLE);
+        var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
+        return new Course(id, subject, number, title, avgRating);
+    }
+
+    private Review buildReview(ResultSet resultSet) throws SQLException {
         var id = resultSet.getInt(REVIEWS_ID);
         var courseID = resultSet.getInt(REVIEWS_COURSEID);
         var userID = resultSet.getInt(REVIEWS_USERID);
@@ -188,7 +188,7 @@ public class DatabaseDriver {
         try (var statement = connection.prepareStatement(query)) {
             try (var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    users.add(getUser(resultSet));
+                    users.add(buildUser(resultSet));
                 }
             }
         }
@@ -201,7 +201,7 @@ public class DatabaseDriver {
         try (var preparedStatement = connection.prepareStatement(query)) {
             try (var resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    courses.add(getCourse(resultSet));
+                    courses.add(buildCourse(resultSet));
                 }
             }
         }
@@ -214,11 +214,24 @@ public class DatabaseDriver {
         try (var statement = connection.prepareStatement(query)) {
             try(var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    reviews.add(getReview(resultSet));
+                    reviews.add(buildReview(resultSet));
                 }
             }
         }
         return reviews;
+    }
+
+    public User getUser(String username) throws SQLException {
+        String query = "SELECT * FROM USERS WHERE Username = ?;";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            try (var resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return buildUser(resultSet);
+                }
+            }
+        }
+        return null;
     }
 
     public boolean isUserInDatabase(String username) throws SQLException {
@@ -247,6 +260,5 @@ public class DatabaseDriver {
             rollback();
             throw e;
         }
-
     }
 }

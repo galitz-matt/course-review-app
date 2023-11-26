@@ -9,28 +9,13 @@ public class LoginService {
         this.databaseDriver = databaseDriver;
     }
 
-    public boolean isUsernameValid(String username) {
-        if (!isUsernameInDatabase(username)) {
+    public User getUser(String username) throws SQLException {
+        databaseDriver.connect();
+        var user = databaseDriver.getUser(username);
+        databaseDriver.disconnect();
+        if (user == null) {
             throw new InvalidUsernameException();
         }
-        return true;
-    }
-
-    public boolean isUsernameAvailable(String username) {
-        if (isUsernameInDatabase(username)) {
-            throw new UsernameNotAvailableException();
-        }
-        return true;
-    }
-
-    public boolean isUsernameInDatabase(String username) {
-        try {
-            databaseDriver.connect();
-            var inDatabase = databaseDriver.isUserInDatabase(username);
-            databaseDriver.disconnect();
-            return inDatabase;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return user;
     }
 }
