@@ -17,22 +17,6 @@ public class Review {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public double getRating() {
         return rating;
     }
