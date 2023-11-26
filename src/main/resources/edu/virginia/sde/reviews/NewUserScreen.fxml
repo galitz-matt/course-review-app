@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.NewUserController">
+    <GridPane VBox.vgrow="ALWAYS" hgap="10" vgap="10" alignment="CENTER">
+        <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Confirm Password:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="confirmPasswordField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+    <Label fx:id="errorMessageLabel"/>
+    <Button text="Create Account" fx:id="createAccountButton" minWidth="80" alignment="CENTER" onAction="#handleCreateAccountAction"/>
+</VBox>

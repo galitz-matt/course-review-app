@@ -51,13 +51,6 @@ public class DatabaseDriver {
         var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
         return new Course(id, subject, number, title, avgRating);
     }
-    private Review getReview(ResultSet resultSet) throws SQLException {
-        var id = resultSet.getInt(REVIEWS_ID);
-        var courseID = resultSet.getInt(REVIEWS_COURSEID);
-        var userID = resultSet.getInt(REVIEWS_USERID);
-        var rating = resultSet.getDouble(REVIEWS_RATING);
-        return new Review(id, courseID,userID,rating);
-    }
 
     public DatabaseDriver(Configuration configuration) {
         this.sqliteFilename = configuration.getDatabaseFilename();
@@ -70,6 +63,14 @@ public class DatabaseDriver {
         connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFilename);
         connection.createStatement().execute("PRAGMA foreign_keys = ON");
         connection.setAutoCommit(false);
+    }
+
+    private Review getReview(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(REVIEWS_ID);
+        var courseID = resultSet.getInt(REVIEWS_COURSEID);
+        var userID = resultSet.getInt(REVIEWS_USERID);
+        var rating = resultSet.getDouble(REVIEWS_RATING);
+        return new Review(id, courseID,userID,rating);
     }
 
     public void checkConnection() throws SQLException {
