@@ -1,5 +1,6 @@
 package edu.virginia.sde.reviews;
 
+import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -16,9 +17,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginScreen.fxml")));
-        primaryStage.setTitle("Login Screen");
-        primaryStage.setScene(new Scene(root, 300, 200));
-        primaryStage.show();
+        var mainController = new MainController(primaryStage);
+        mainController.switchToLogin();
     }
 }
