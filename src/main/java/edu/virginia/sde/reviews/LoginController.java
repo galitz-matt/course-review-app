@@ -24,7 +24,7 @@ public class LoginController {
     private void handleLoginAction() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        // TODO: check if username and password exist
+        // TODO: check if username exists -> password is valid
         // TODO: switch to course selection screen
     }
 

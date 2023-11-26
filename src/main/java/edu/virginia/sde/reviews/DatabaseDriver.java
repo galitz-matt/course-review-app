@@ -186,9 +186,10 @@ public class DatabaseDriver {
         var users = new ArrayList<User>();
         var query = "SELECT * FROM Users";
         try (var statement = connection.prepareStatement(query)) {
-            var resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                users.add(getUser(resultSet));
+            try (var resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    users.add(getUser(resultSet));
+                }
             }
         }
         return users;
@@ -198,9 +199,10 @@ public class DatabaseDriver {
         var courses = new ArrayList<Course>();
         var query = "SELECT * FROM Courses";
         try (var preparedStatement = connection.prepareStatement(query)) {
-            var resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                courses.add(getCourse(resultSet));
+            try (var resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    courses.add(getCourse(resultSet));
+                }
             }
         }
         return courses;
@@ -210,9 +212,10 @@ public class DatabaseDriver {
         var reviews = new ArrayList<Review>();
         var query = "SELECT * FROM Reviews";
         try (var statement = connection.prepareStatement(query)) {
-            var resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                reviews.add(getReview(resultSet));
+            try(var resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    reviews.add(getReview(resultSet));
+                }
             }
         }
         return reviews;
