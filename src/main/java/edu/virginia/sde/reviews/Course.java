@@ -31,16 +31,8 @@ public class Course {
         return avgRating;
     }
 
-    public void setAvgRating(double avgRating) {
-        this.avgRating = avgRating;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getSubject() {
@@ -51,20 +43,8 @@ public class Course {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     @Override

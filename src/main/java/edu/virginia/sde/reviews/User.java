@@ -6,12 +6,13 @@ public class User {
     private String password;
 
     public User(int id, String username, String password) {
-        verifyInfo(username, password);
+        verifyInfo(username, password); // TODO: remove; see line 15
         this.id = id;
         this.username= username;
         this.password = password;
     }
 
+    //TODO: handle this in the business logic i.e. button handlers
     private void verifyInfo(String username, String password) {
         if (username == null || password == null) {
             throw new IllegalArgumentException("User information cannot be empty");

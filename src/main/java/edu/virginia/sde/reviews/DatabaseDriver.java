@@ -161,7 +161,7 @@ public class DatabaseDriver {
         checkConnection();
         var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
         var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
-        // TODO: optimize this, more robust statement intialization (try w/ resources),
+        // TODO: optimize this, more robust statement initialization (try w/ resources),
         var statement1 = connection.prepareStatement(selectSql);
         var statement2 = connection.prepareStatement(updateSql);
         statement1.setInt(1,courseId);
