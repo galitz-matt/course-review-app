@@ -39,7 +39,9 @@ public class NewUserController {
     }
 
     private void validateUserInfo(String username, String password, String confirmPassword) {
-        userInfoService.isUsernameAvailable(username);
+        if (!userInfoService.isUsernameAvailable(username)) {
+            throw new UsernameNotAvailableException();
+        }
         if (password.length() < 8) {
             throw new InvalidPasswordException();
         }

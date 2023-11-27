@@ -24,12 +24,9 @@ public class UserInfoService {
     public  boolean isUsernameAvailable(String username) {
         try {
             databaseDriver.connect();
-            var inDatabase = databaseDriver.isUserInDatabase(username);
+            var isAvailable = !databaseDriver.isUserInDatabase(username);
             databaseDriver.disconnect();
-            if (inDatabase) {
-                throw new UsernameNotAvailableException();
-            }
-            return true;
+            return isAvailable;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
