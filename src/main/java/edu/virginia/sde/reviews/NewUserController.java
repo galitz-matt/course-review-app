@@ -28,7 +28,7 @@ public class NewUserController {
         // TODO: Add user to database
         // TODO: Switch to course selection scene
         try {
-            verifyUserInfo(username, password, confirmPassword);
+            validateUserInfo(username, password, confirmPassword);
         } catch (UsernameNotAvailableException e) {
             errorMessageLabel.setText(String.format("Username \"%s\" is taken", username));
         } catch (InvalidPasswordException e) {
@@ -38,7 +38,7 @@ public class NewUserController {
         }
     }
 
-    private void verifyUserInfo(String username, String password, String confirmPassword) {
+    private void validateUserInfo(String username, String password, String confirmPassword) {
         userInfoService.isUsernameAvailable(username);
         if (password.length() < 8) {
             throw new InvalidPasswordException();
