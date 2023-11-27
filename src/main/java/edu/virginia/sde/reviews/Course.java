@@ -55,13 +55,13 @@ public class Course {
         stringBuilder.append(subject)
                 .append(" ")
                 .append(number)
-                .append(" ")
+                .append(": ")
                 .append(title)
-                .append(" ");
+                .append(" - ");
         if (avgRating != -1) {
             stringBuilder.append(getAvgRating());
         } else {
-            stringBuilder.append("(no ratings)");
+            stringBuilder.append("N/A");
         }
         return stringBuilder.toString();
     }
