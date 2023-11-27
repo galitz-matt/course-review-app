@@ -1,5 +1,7 @@
 package edu.virginia.sde.reviews;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -15,7 +17,7 @@ public class Course {
         this.subject = subject;
         this.number = number;
         this.title = title;
-        this.avgRating = 0;
+        this.avgRating = -1;
     }
 
     public Course(int id, String subject, int number, String title, double avgRating) {
@@ -43,7 +45,25 @@ public class Course {
     }
 
     public double getAvgRating() {
-        return avgRating;
+        var rating = BigDecimal.valueOf(avgRating);
+        var truncatedRating = rating.setScale(2, RoundingMode.DOWN);
+        return truncatedRating.doubleValue();
+    }
+
+    public String toString() {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append(subject)
+                .append(" ")
+                .append(number)
+                .append(" ")
+                .append(title)
+                .append(" ");
+        if (avgRating != -1) {
+            stringBuilder.append(getAvgRating());
+        } else {
+            stringBuilder.append("(no ratings)");
+        }
+        return stringBuilder.toString();
     }
 
     @Override

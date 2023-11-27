@@ -2,16 +2,22 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseSearchController">
     <Label fx:id="userIDLabel" alignment="TOP_LEFT"/>
     <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
         <Label text="Subject:"/>
-        <TextField fx:id="subjectField"/>
+        <TextField fx:id="subjectField" HBox.hgrow="ALWAYS"/>
         <Label text="Number:"/>
-        <TextField fx:id="numberField"/>
+        <TextField fx:id="numberField" HBox.hgrow="ALWAYS"/>
         <Label text="Title:"/>
-        <TextField fx:id="titleField"/>
+        <TextField fx:id="titleField" HBox.hgrow="ALWAYS"/>
         <Button text="Search" minWidth="80"/>
     </HBox>
+    <ListView fx:id="courseListView" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets top="10" bottom="10" right="10" left="10"/>
+        </VBox.margin>
+    </ListView>
 </VBox>
