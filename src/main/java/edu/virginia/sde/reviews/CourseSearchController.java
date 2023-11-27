@@ -10,7 +10,7 @@ public class CourseSearchController {
     //TODO: create CourseService for interacting w/ database
     private User user;
     @FXML
-    private Label userIDLabel;
+    private Label userLabel;
     @FXML
     private TextField subjectFilter;
     @FXML
@@ -46,6 +46,6 @@ public class CourseSearchController {
 
     public void setUser(User user) {
         this.user = user;
-        this.userIDLabel.setText("Logged in as: " + user.getUsername());
+        this.userLabel.setText("Logged in as: " + user.getUsername());
     }
 }
