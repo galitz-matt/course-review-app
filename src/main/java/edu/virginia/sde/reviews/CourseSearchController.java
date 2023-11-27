@@ -7,7 +7,7 @@ import java.util.function.UnaryOperator;
 
 public class CourseSearchController {
     private MainController mainController;
-    //TODO: create CourseService for interacting w/ database
+    private CourseService courseService;
     private User user;
     @FXML
     private Label userLabel;
@@ -21,10 +21,10 @@ public class CourseSearchController {
     private ListView<Course> courseListView;
 
     public void initialize() {
-        addTextFieldRestrictions();
+        addFilterLengthRestrictions();
     }
 
-    private void addTextFieldRestrictions() {
+    private void addFilterLengthRestrictions() {
         subjectFilter.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(4)));
         numberFilter.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(4)));
         titleFilter.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(50)));
@@ -42,6 +42,10 @@ public class CourseSearchController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
     }
 
     public void setUser(User user) {

@@ -17,7 +17,6 @@
         <Label text="Title:"/>
         <TextField fx:id="titleFilter"/>
     </HBox>
-    <Button text="Search"/>
     <Label text="Courses:" style="-fx-alignment: baseline-left;"/>
     <ListView fx:id="courseListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>

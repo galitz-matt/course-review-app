@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 
 public class MainController {
     private final Stage primaryStage;
+    private final DatabaseDriver databaseDriver;
     private Scene loginScene;
     private Scene newUserScene;
     private Scene courseSelectionScene;
@@ -13,12 +14,14 @@ public class MainController {
 
     public MainController(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.databaseDriver = new DatabaseDriver(new Configuration());
         initScenes();
     }
 
     private void initScenes() {
         try {
-            var userInfoService = new UserInfoService(new DatabaseDriver(new Configuration()));
+            var userInfoService = new UserInfoService(databaseDriver);
+            var courseService = new CourseService(databaseDriver);
 
             var loginLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
             loginScene = new Scene(loginLoader.load(), 300, 200);
@@ -36,7 +39,7 @@ public class MainController {
             courseSelectionScene = new Scene(courseSearchLoader.load());
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
-            // TODO: set courseService
+            courseSearchController.setCourseService(courseService);
 
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
