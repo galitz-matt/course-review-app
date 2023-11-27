@@ -157,25 +157,25 @@ public class DatabaseDriver {
     }
 
     public void updateCourseAverageRating(int courseId) throws SQLException{
-        checkConnection();
-        var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
-        var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
-        // TODO: optimize this, more robust statement initialization (try w/ resources),
-        var statement1 = connection.prepareStatement(selectSql);
-        var statement2 = connection.prepareStatement(updateSql);
-        statement1.setInt(1,courseId);
-        ResultSet resultSet = statement1.executeQuery();
-        if (resultSet.next()) {
-            double averageRating = resultSet.getDouble("AvgRating");
-            statement2.setDouble(1, averageRating);
-            statement2.setInt(2, courseId);
-            int affectedRows = statement2.executeUpdate();
-            // TODO: consider error-checking in business logic instead
-            if (affectedRows > 0) {
-                System.out.println("Average rating updated successfully for course ID " + courseId);
-            } else {
-                System.out.println("Course not found or no reviews available for course ID " + courseId);
+        try {
+            checkConnection();
+            var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
+            var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
+            // TODO: optimize this, more robust statement initialization (try w/ resources),
+            var statement1 = connection.prepareStatement(selectSql);
+            var statement2 = connection.prepareStatement(updateSql);
+            statement1.setInt(1, courseId);
+            ResultSet resultSet = statement1.executeQuery();
+            if (resultSet.next()) {
+                double averageRating = resultSet.getDouble("AvgRating");
+                statement2.setDouble(1, averageRating);
+                statement2.setInt(2, courseId);
+                int affectedRows = statement2.executeUpdate();
             }
+        }
+        catch (SQLException e){
+            rollback();
+            throw e;
         }
     }
 
