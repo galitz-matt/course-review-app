@@ -116,13 +116,11 @@ public class DatabaseDriver {
 
     public void addUser(User user) throws SQLException {
         checkConnection();
-        var query = "INSERT INTO Users(Id, Username, Password) VALUES (?, ?, ?);";
+        var query = "INSERT INTO Users(Username, Password) VALUES (?, ?);";
         try (var preparedStatement = connection.prepareStatement(query)) {
-            var statement = connection.prepareStatement(query);
-            statement.setInt(1, user.getId());
-            statement.setString(2, user.getUsername());
-            statement.setString(3, user.getPassword());
-            statement.executeUpdate();
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rollback();
             throw e;
