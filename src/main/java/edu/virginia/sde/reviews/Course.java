@@ -3,10 +3,10 @@ package edu.virginia.sde.reviews;
 import java.util.Objects;
 
 public class Course {
-    private int id;
-    private String subject;
-    private int number;
-    private String title;
+    private final int id;
+    private final String subject;
+    private final int number;
+    private final String title;
     private double avgRating;
 
     public Course(int id, String subject, int number, String title,double avgRating) {
@@ -43,5 +43,4 @@ public class Course {
         if (!(o instanceof Course course)) return false;
         return id == course.id && number == course.number && Objects.equals(subject, course.subject) && Objects.equals(title, course.title);
     }
-
 }
