@@ -12,7 +12,6 @@ import java.util.Objects;
 import static javafx.application.Application.launch;
 
 public class MainApplication extends Application {
-
     public static void main(String[] args) { launch(args); }
 
     @Override
