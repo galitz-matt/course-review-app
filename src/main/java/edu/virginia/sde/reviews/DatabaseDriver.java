@@ -14,7 +14,7 @@ public class DatabaseDriver {
     public final String COURSES_TABLE = "Courses",
             COURSES_ID = "ID",
             COURSES_SUBJECT = "Subject",
-            COURSES_NUMBER = "Num",
+            COURSES_NUMBER = "Number",
             Courses_TITLE = "Title",
             COURSES_AVG_RATING = "AvgRating";
 
@@ -102,13 +102,14 @@ public class DatabaseDriver {
             throw e;
         }
     }
-    public void addCourse(Course course) throws SQLException{
+    public void addCourse(Course course) throws SQLException {
         checkConnection();
-        var query = "INSERT INTO Courses(Subject, Number, Title) VALUES (?, ?, ?)";
+        var query = "INSERT INTO Courses(Subject, Number, Title, AvgRating) VALUES (?, ?, ?, ?)";
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, course.getSubject());
             preparedStatement.setInt(2, course.getNumber());
             preparedStatement.setString(3, course.getTitle());
+            preparedStatement.setDouble(4, course.getAvgRating());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rollback();
@@ -126,29 +127,6 @@ public class DatabaseDriver {
             preparedStatement.executeUpdate();
             updateCourseAverageRating(review.getCourseId());
         } catch (SQLException e) {
-            rollback();
-            throw e;
-        }
-    }
-
-    public void updateCourseAverageRating(int courseId) throws SQLException{
-        try {
-            checkConnection();
-            var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
-            var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
-            // TODO: optimize this, more robust statement initialization (try w/ resources),
-            var statement1 = connection.prepareStatement(selectSql);
-            var statement2 = connection.prepareStatement(updateSql);
-            statement1.setInt(1, courseId);
-            ResultSet resultSet = statement1.executeQuery();
-            if (resultSet.next()) {
-                double averageRating = resultSet.getDouble("AvgRating");
-                statement2.setDouble(1, averageRating);
-                statement2.setInt(2, courseId);
-                int affectedRows = statement2.executeUpdate();
-            }
-        }
-        catch (SQLException e){
             rollback();
             throw e;
         }
@@ -205,7 +183,6 @@ public class DatabaseDriver {
         var subject = resultSet.getString(COURSES_SUBJECT);
         var number = resultSet.getInt(COURSES_NUMBER);
         var title = resultSet.getString(Courses_TITLE);
-        // TODO: account for null avgRating
         var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
         return new Course(id, subject, number, title, avgRating);
     }
@@ -231,6 +208,28 @@ public class DatabaseDriver {
         return null;
     }
 
+    public void updateCourseAverageRating(int courseId) throws SQLException{
+        try {
+            checkConnection();
+            var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
+            var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
+            // TODO: optimize this, more robust statement initialization (try w/ resources),
+            var statement1 = connection.prepareStatement(selectSql);
+            var statement2 = connection.prepareStatement(updateSql);
+            statement1.setInt(1, courseId);
+            ResultSet resultSet = statement1.executeQuery();
+            if (resultSet.next()) {
+                double averageRating = resultSet.getDouble(REVIEWS_RATING);
+                statement2.setDouble(1, averageRating);
+                statement2.setInt(2, courseId);
+                statement2.executeUpdate();
+            }
+        }
+        catch (SQLException e){
+            rollback();
+            throw e;
+        }
+    }
 
     public boolean isUserInDatabase(String username) throws SQLException {
         String query = "SELECT EXISTS(SELECT 1 FROM Users WHERE Username = ?);";
