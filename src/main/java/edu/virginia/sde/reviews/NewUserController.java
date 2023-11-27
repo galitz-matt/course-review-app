@@ -22,10 +22,30 @@ public class NewUserController {
 
     @FXML
     private void handleCreateAccountAction() {
-        var username = usernameField;
-        var password = passwordField;
-        var confirmPassword = confirmPasswordField;
-        // TODO: verify user info, check if passwords match, check if username is available
+        var username = usernameField.getText();
+        var password = passwordField.getText();
+        var confirmPassword = confirmPasswordField.getText();
+        // TODO: Add user to database
+        // TODO: Switch to course selection scene
+        try {
+            verifyUserInfo(username, password, confirmPassword);
+        } catch (UsernameNotAvailableException e) {
+            errorMessageLabel.setText(String.format("Username \"%s\" is taken", username));
+        } catch (InvalidPasswordException e) {
+            errorMessageLabel.setText("Password must be at least 8 characters");
+        } catch (IncorrectPasswordException e) {
+            errorMessageLabel.setText("Passwords do not match");
+        }
+    }
+
+    private void verifyUserInfo(String username, String password, String confirmPassword) {
+        userInfoService.isUsernameAvailable(username);
+        if (password.length() < 8) {
+            throw new InvalidPasswordException();
+        }
+        if (!confirmPassword.equals(password)) {
+            throw new IncorrectPasswordException();
+        }
     }
 
     @FXML
