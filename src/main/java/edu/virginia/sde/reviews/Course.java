@@ -1,15 +1,24 @@
 package edu.virginia.sde.reviews;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Course {
-    private final int id;
+    private int id;
     private final String subject;
     private final int number;
     private final String title;
     private double avgRating;
 
-    public Course(int id, String subject, int number, String title,double avgRating) {
+    public Course(String subject, int number, String title) {
+        this.id = -1;
+        this.subject = subject;
+        this.number = number;
+        this.title = title;
+        this.avgRating = -1;
+    }
+
+    public Course(int id, String subject, int number, String title, double avgRating) {
         this.id = id;
         this.subject = subject;
         this.number =  number;
@@ -17,12 +26,8 @@ public class Course {
         this.avgRating = avgRating;
     }
 
-    public double getAvgRating() {
-        return avgRating;
-    }
-
-    public int getId() {
-        return id;
+    public Optional<Integer> getId() {
+        return id == -1 ? Optional.empty() : Optional.of(id);
     }
 
     public String getSubject() {
@@ -35,6 +40,10 @@ public class Course {
 
     public String getTitle() {
         return title;
+    }
+
+    public Optional<Double> getAvgRating() {
+        return avgRating == -1 ? Optional.empty() : Optional.of(avgRating);
     }
 
     @Override

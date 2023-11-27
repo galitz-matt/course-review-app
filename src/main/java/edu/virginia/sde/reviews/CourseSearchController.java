@@ -42,6 +42,6 @@ public class CourseSearchController {
 
     public void setUser(User user) {
         this.user = user;
-        this.userIDLabel.setText("Logged in as:" + user.getUsername());
+        this.userIDLabel.setText("Logged in as: " + user.getUsername());
     }
 }
