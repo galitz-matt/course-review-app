@@ -21,6 +21,17 @@ public class UserInfoService {
         }
     }
 
+    public void addUser(String username, String password) {
+        var user = new User(username, password);
+        try {
+            databaseDriver.connect();
+            databaseDriver.addUser(user);
+            databaseDriver.disconnect();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public  boolean isUsernameAvailable(String username) {
         try {
             databaseDriver.connect();
