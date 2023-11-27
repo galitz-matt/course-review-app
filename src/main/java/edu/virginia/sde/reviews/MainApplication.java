@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
-
 import java.util.Objects;
-
 import static javafx.application.Application.launch;
 
 public class MainApplication extends Application {
