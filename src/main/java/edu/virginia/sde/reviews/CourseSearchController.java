@@ -1,9 +1,7 @@
 package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 
 import java.util.function.UnaryOperator;
 
@@ -14,16 +12,22 @@ public class CourseSearchController {
     @FXML
     private Label userIDLabel;
     @FXML
-    private TextField subjectField;
+    private TextField subjectFilter;
     @FXML
-    private TextField numberField;
+    private TextField numberFilter;
     @FXML
-    private TextField titleField;
+    private TextField titleFilter;
+    @FXML
+    private ListView<Course> courseListView;
 
     public void initialize() {
-        subjectField.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(4)));
-        numberField.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(4)));
-        titleField.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(50)));
+        addTextFieldRestrictions();
+    }
+
+    private void addTextFieldRestrictions() {
+        subjectFilter.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(4)));
+        numberFilter.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(4)));
+        titleFilter.setTextFormatter(new TextFormatter<>(createLimitingUnaryOperator(50)));
     }
 
     private UnaryOperator<TextFormatter.Change> createLimitingUnaryOperator(int limit) {
