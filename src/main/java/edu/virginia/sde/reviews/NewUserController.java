@@ -28,8 +28,7 @@ public class NewUserController {
         try {
             validateUserInfo(username, password, confirmPassword);
             userInfoService.addUser(new User(username, password));
-            errorMessageLabel.setText("");
-            mainController.switchToLogin();
+            errorMessageLabel.setText("User creation successful (navigate to login)");
         } catch (UsernameNotAvailableException e) {
             errorMessageLabel.setText(String.format("Username \"%s\" is taken", username));
         } catch (InvalidPasswordException e) {
