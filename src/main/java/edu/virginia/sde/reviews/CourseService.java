@@ -13,7 +13,7 @@ public class CourseService {
     public List<Course> getCourses() {
         try {
             databaseDriver.connect();
-            var courses = databaseDriver.getCourses();
+            var courses = databaseDriver.getAllCourses();
             databaseDriver.disconnect();
             return courses;
         } catch (SQLException e) {

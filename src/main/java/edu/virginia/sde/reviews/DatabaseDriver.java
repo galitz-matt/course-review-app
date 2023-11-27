@@ -1,6 +1,5 @@
 package edu.virginia.sde.reviews;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,29 +48,6 @@ public class DatabaseDriver {
 
     public void disconnect() throws SQLException {
         connection.close();
-    }
-
-    private User buildUser(ResultSet resultSet) throws SQLException {
-        var id = resultSet.getInt(USER_ID);
-        var username = resultSet.getString(USER_USERNAME);
-        var password = resultSet.getString(USER_PASSWORD);
-        return new User(id, username,password);
-    }
-    private Course buildCourse(ResultSet resultSet) throws SQLException {
-        var id = resultSet.getInt(COURSES_ID);
-        var subject = resultSet.getString(COURSES_SUBJECT);
-        var number = resultSet.getInt(COURSES_NUMBER);
-        var title = resultSet.getString(Courses_TITLE);
-        var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
-        return new Course(id, subject, number, title, avgRating);
-    }
-
-    private Review buildReview(ResultSet resultSet) throws SQLException {
-        var id = resultSet.getInt(REVIEWS_ID);
-        var courseID = resultSet.getInt(REVIEWS_COURSEID);
-        var userID = resultSet.getInt(REVIEWS_USERID);
-        var rating = resultSet.getDouble(REVIEWS_RATING);
-        return new Review(id, courseID,userID,rating);
     }
 
     public void checkConnection() throws SQLException {
@@ -128,12 +104,11 @@ public class DatabaseDriver {
     }
     public void addCourse(Course course) throws SQLException{
         checkConnection();
-        var query = "INSERT INTO Courses(Subject, Number, Title, AvgRating) VALUES (?, ?, ?, ?)";
+        var query = "INSERT INTO Courses(Subject, Number, Title) VALUES (?, ?, ?)";
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, course.getSubject());
             preparedStatement.setInt(2, course.getNumber());
             preparedStatement.setString(3, course.getTitle());
-            preparedStatement.setDouble(4, course.getAvgRating());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rollback();
@@ -179,7 +154,7 @@ public class DatabaseDriver {
         }
     }
 
-    public List<User> getUsers() throws SQLException{
+    public List<User> getAllUsers() throws SQLException{
         checkConnection();
         var users = new ArrayList<User>();
         var query = "SELECT * FROM Users";
@@ -192,7 +167,7 @@ public class DatabaseDriver {
         }
         return users;
     }
-    public List<Course> getCourses() throws SQLException{
+    public List<Course> getAllCourses() throws SQLException{
         checkConnection();
         var courses = new ArrayList<Course>();
         var query = "SELECT * FROM Courses";
@@ -205,7 +180,7 @@ public class DatabaseDriver {
         }
         return courses;
     }
-    public List<Review> getReviews() throws SQLException {
+    public List<Review> getAllReviews() throws SQLException {
         checkConnection();
         var reviews = new ArrayList<Review>();
         var query = "SELECT * FROM Reviews";
@@ -217,6 +192,30 @@ public class DatabaseDriver {
             }
         }
         return reviews;
+    }
+
+    private User buildUser(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(USER_ID);
+        var username = resultSet.getString(USER_USERNAME);
+        var password = resultSet.getString(USER_PASSWORD);
+        return new User(id, username,password);
+    }
+    private Course buildCourse(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(COURSES_ID);
+        var subject = resultSet.getString(COURSES_SUBJECT);
+        var number = resultSet.getInt(COURSES_NUMBER);
+        var title = resultSet.getString(Courses_TITLE);
+        // TODO: account for null avgRating
+        var avgRating = resultSet.getDouble(COURSES_AVG_RATING);
+        return new Course(id, subject, number, title, avgRating);
+    }
+
+    private Review buildReview(ResultSet resultSet) throws SQLException {
+        var id = resultSet.getInt(REVIEWS_ID);
+        var courseID = resultSet.getInt(REVIEWS_COURSEID);
+        var userID = resultSet.getInt(REVIEWS_USERID);
+        var rating = resultSet.getDouble(REVIEWS_RATING);
+        return new Review(id, courseID,userID,rating);
     }
 
     public User getUser(String username) throws SQLException {
@@ -231,6 +230,7 @@ public class DatabaseDriver {
         }
         return null;
     }
+
 
     public boolean isUserInDatabase(String username) throws SQLException {
         String query = "SELECT EXISTS(SELECT 1 FROM Users WHERE Username = ?);";
