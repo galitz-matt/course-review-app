@@ -26,7 +26,8 @@ public class NewUserController {
         var password = passwordField.getText();
         var confirmPassword = confirmPasswordField.getText();
         // TODO: Add user to database
-        // TODO: Switch to course selection scene
+        errorMessageLabel.setText("");
+        mainController.switchToLogin();
         try {
             validateUserInfo(username, password, confirmPassword);
         } catch (UsernameNotAvailableException e) {
