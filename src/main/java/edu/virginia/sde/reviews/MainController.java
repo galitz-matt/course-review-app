@@ -8,6 +8,8 @@ public class MainController {
     private final Stage primaryStage;
     private Scene loginScene;
     private Scene newUserScene;
+    private Scene courseSelectionScene;
+    private CourseSearchController courseSearchController;
 
     public MainController(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -29,6 +31,13 @@ public class MainController {
             NewUserController newUserController = newUserLoader.getController();
             newUserController.setMainController(this);
             newUserController.setUserInfoService(userInfoService);
+
+            var courseSearchLoader = new FXMLLoader(getClass().getResource("CourseSearchScreen.fxml"));
+            courseSelectionScene = new Scene(courseSearchLoader.load());
+            courseSearchController = courseSearchLoader.getController();
+            courseSearchController.setMainController(this);
+            // TODO: set courseService
+
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
@@ -41,6 +50,12 @@ public class MainController {
 
     public void switchToNewUserSetup() {
         primaryStage.setScene(newUserScene);
+        primaryStage.show();
+    }
+
+    public void switchToCourseSelection(User user) {
+        primaryStage.setScene(courseSelectionScene);
+        courseSearchController.setUser(user);
         primaryStage.show();
     }
 }
