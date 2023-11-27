@@ -21,6 +21,20 @@ public class UserInfoService {
         }
     }
 
+    public  boolean isUsernameAvailable(String username) {
+        try {
+            databaseDriver.connect();
+            var inDatabase = databaseDriver.isUserInDatabase(username);
+            databaseDriver.disconnect();
+            if (inDatabase) {
+                throw new UsernameNotAvailableException();
+            }
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void verifyUserInfo(User user, String password) {
         if (user == null) {
             throw new InvalidUsernameException();
@@ -29,5 +43,4 @@ public class UserInfoService {
             throw new IncorrectPasswordException();
         }
     }
-
 }
