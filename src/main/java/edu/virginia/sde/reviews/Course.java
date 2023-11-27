@@ -15,7 +15,7 @@ public class Course {
         this.subject = subject;
         this.number = number;
         this.title = title;
-        this.avgRating = -1;
+        this.avgRating = 0;
     }
 
     public Course(int id, String subject, int number, String title, double avgRating) {
@@ -42,8 +42,8 @@ public class Course {
         return title;
     }
 
-    public Optional<Double> getAvgRating() {
-        return avgRating == -1 ? Optional.empty() : Optional.of(avgRating);
+    public double getAvgRating() {
+        return avgRating;
     }
 
     @Override

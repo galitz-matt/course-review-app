@@ -1,11 +1,14 @@
 package edu.virginia.sde.reviews;
 
+import java.util.Optional;
+
 public class User {
     private int id;
     private final String username;
     private final String password;
 
     public User(String username, String password) {
+        this.id = -1;
         this.username = username;
         this.password = password;
     }
@@ -16,8 +19,8 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public Optional<Integer> getId() {
+        return id == -1 ? Optional.empty() : Optional.of(id);
     }
 
     public String getUsername() {

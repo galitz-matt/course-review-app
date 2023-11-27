@@ -128,13 +128,12 @@ public class DatabaseDriver {
     }
     public void addCourse(Course course) throws SQLException{
         checkConnection();
-        var query = "INSERT INTO Courses(Id, Subject, Number, Title, AvgRating) VALUES (?, ?, ?, ?, ?)";
+        var query = "INSERT INTO Courses(Subject, Number, Title, AvgRating) VALUES (?, ?, ?, ?)";
         try (var preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, course.getId());
-            preparedStatement.setString(2, course.getSubject());
-            preparedStatement.setInt(3, course.getNumber());
-            preparedStatement.setString(4, course.getTitle());
-            preparedStatement.setDouble(5, course.getAvgRating());
+            preparedStatement.setString(1, course.getSubject());
+            preparedStatement.setInt(2, course.getNumber());
+            preparedStatement.setString(3, course.getTitle());
+            preparedStatement.setDouble(4, course.getAvgRating());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rollback();
