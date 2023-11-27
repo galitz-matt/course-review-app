@@ -21,8 +21,7 @@ public class UserInfoService {
         }
     }
 
-    public void addUser(String username, String password) {
-        var user = new User(username, password);
+    public void addUser(User user) {
         try {
             databaseDriver.connect();
             databaseDriver.addUser(user);

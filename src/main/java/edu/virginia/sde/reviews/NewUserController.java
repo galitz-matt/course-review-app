@@ -25,11 +25,11 @@ public class NewUserController {
         var username = usernameField.getText();
         var password = passwordField.getText();
         var confirmPassword = confirmPasswordField.getText();
-        // TODO: Add user to database
-        errorMessageLabel.setText("");
-        mainController.switchToLogin();
         try {
             validateUserInfo(username, password, confirmPassword);
+            userInfoService.addUser(new User(username, password));
+            errorMessageLabel.setText("");
+            mainController.switchToLogin();
         } catch (UsernameNotAvailableException e) {
             errorMessageLabel.setText(String.format("Username \"%s\" is taken", username));
         } catch (InvalidPasswordException e) {
