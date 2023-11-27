@@ -25,6 +25,7 @@ public class UserInfoService {
         try {
             databaseDriver.connect();
             databaseDriver.addUser(user);
+            databaseDriver.commit();
             databaseDriver.disconnect();
         } catch (SQLException e) {
             throw new RuntimeException(e);
