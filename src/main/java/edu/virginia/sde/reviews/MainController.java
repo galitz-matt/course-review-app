@@ -45,6 +45,7 @@ public class MainController {
             courseSelectionScene = new Scene(courseSearchLoader.load());
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
+            courseSearchController.setCourseService(new CourseService(databaseDriver));
             courseSearchController.initializeCourseListView();
 
             var addCourseLoader = new FXMLLoader(getClass().getResource("AddCourseScreen.fxml"));

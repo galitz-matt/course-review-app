@@ -27,10 +27,6 @@ public class CourseSearchController {
     private ObservableList<Course> courses = FXCollections.observableArrayList();
     private FilteredList<Course> filteredData;
 
-    public void initialize() {
-        courseService = new CourseService(new DatabaseDriver(new Configuration()));
-    }
-
     public void initializeCourseListView() {
         addFilterLengthRestrictions();
         refreshCourseList();
@@ -97,6 +93,8 @@ public class CourseSearchController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
+
+    public void setCourseService(CourseService courseService) { this.courseService = courseService; }
 
     public void setUser(User user) {
         this.user = user;
