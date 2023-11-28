@@ -32,7 +32,6 @@ public class CourseReviewsController {
                 setText(empty ? null : reviewService.getReviewString(review));
             }
         });
-        userReview = reviewService.getReview(user.getId(), course.getId());
         // TODO: consider deleting code below, verify if these need to be clicked
 //        reviewListView.setOnMouseClicked(event -> {
 //            if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
@@ -65,6 +64,7 @@ public class CourseReviewsController {
     }
 
     public void refreshReviewList() {
+        userReview = reviewService.getReview(user.getId(), course.getId());
         reviews.clear();
         reviews.addAll(reviewService.getReviewsByCourseID(course.getId()));
     }
