@@ -120,9 +120,9 @@ public class DatabaseDriver {
             throw e;
         }
     }
-    public void addReview(Review review) throws SQLException{
+    public void addReview(Review review) throws SQLException {
         checkConnection();
-        var query = "INSERT INTO Reviews (CourseID, UserID, Rating, Comment, TimeStamp) VALUES (?, ?, ?, ?, ?);";
+        var query = "INSERT INTO Reviews(CourseID, UserID, Rating, Comment, TimeStamp) VALUES (?, ?, ?, ?, ?);";
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, review.getCourseId());
             preparedStatement.setInt(2, review.getUserId());
@@ -131,6 +131,19 @@ public class DatabaseDriver {
             preparedStatement.setLong(5, review.getTimeStamp());
             preparedStatement.executeUpdate();
             updateAverageRating(review.getCourseId());
+        } catch (SQLException e) {
+            rollback();
+            throw e;
+        }
+    }
+
+    public void deleteReview(Review review) throws SQLException {
+        checkConnection();
+        var query = "DELETE FROM Reviews WHERE UserID = ? AND CourseID = ?";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, review.getUserId());
+            preparedStatement.setInt(2, review.getCourseId());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rollback();
             throw e;
