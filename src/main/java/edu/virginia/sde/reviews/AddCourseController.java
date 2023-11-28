@@ -62,6 +62,8 @@ public class AddCourseController {
             messageLabel.setText("Number must be 4 numeric characters");
         } catch (InvalidTitleException e) {
             messageLabel.setText("Title must be at least 1 character");
+        } catch (CourseAlreadyExistsException e) {
+            messageLabel.setText("Course already exists");
         } finally {
             clearTextFields();
         }
