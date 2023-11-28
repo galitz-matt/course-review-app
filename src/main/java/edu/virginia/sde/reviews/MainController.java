@@ -45,6 +45,7 @@ public class MainController {
             courseSelectionScene = new Scene(courseSearchLoader.load());
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
+            courseSearchController.initializeCourseListView();
 
             var addCourseLoader = new FXMLLoader(getClass().getResource("AddCourseScreen.fxml"));
             addCourseScene = new Scene(addCourseLoader.load(), 300, 200);
@@ -55,6 +56,7 @@ public class MainController {
             myReviewsScene = new Scene(myReviewsLoader.load(), 300, 200);
             myReviewsController = myReviewsLoader.getController();
             myReviewsController.setMainController(this);
+            myReviewsController.setReviewService(new ReviewService(databaseDriver));
         } catch (Exception e) {
             throw e;
             // throw new RuntimeException("Failed to load scenes");
@@ -92,7 +94,11 @@ public class MainController {
     public void switchToMyReviews(User user) {
         primaryStage.setScene(myReviewsScene);
         myReviewsController.setUser(user);
-        myReviewsController.initializeReviewListView();
+        if (myReviewsController.isReviewListViewInitialized()) {
+            myReviewsController.refreshReviewList();
+        } else {
+            myReviewsController.initializeReviewListView();
+        }
         primaryStage.show();
     }
 }

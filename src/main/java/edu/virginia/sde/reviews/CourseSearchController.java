@@ -29,6 +29,9 @@ public class CourseSearchController {
 
     public void initialize() {
         courseService = new CourseService(new DatabaseDriver(new Configuration()));
+    }
+
+    public void initializeCourseListView() {
         addFilterLengthRestrictions();
         refreshCourseList();
         filteredData = new FilteredList<>(courses, p -> true);

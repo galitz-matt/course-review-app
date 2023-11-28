@@ -16,10 +16,7 @@ public class MyReviewsController {
     @FXML
     private Label selectedReviewLabel;
     private ObservableList<Review> reviews = FXCollections.observableArrayList();
-
-    public void initialize() {
-        reviewService = new ReviewService(new DatabaseDriver(new Configuration()));
-    }
+    private boolean initialized = false;
 
     public void initializeReviewListView() {
         refreshReviewList();
@@ -37,10 +34,19 @@ public class MyReviewsController {
                 // TODO: mainController.switchToCourseReviews(reviewService.getCourse(review);
             }
         });
+        initialized = true;
+    }
+
+    public boolean isReviewListViewInitialized() {
+        return initialized;
     }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void setReviewService(ReviewService reviewService) {
+        this.reviewService = reviewService;
     }
 
     public void setUser(User user) {
