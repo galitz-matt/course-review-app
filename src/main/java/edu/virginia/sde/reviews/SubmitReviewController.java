@@ -66,10 +66,14 @@ public class SubmitReviewController {
     }
 
     public void handleSubmitAction() {
-        // TODO: add review, deleting happens only AFTER review is added successfully
+        var timeStamp = System.currentTimeMillis();
+        var rating = Integer.parseInt(ratingField.getText());
+        var comment = commentField.getText().isEmpty() ? "N/A" : commentField.getText();
+        var newReview = new Review(course.getId(), user.getId(), rating, comment, timeStamp);
         if (userReview != null) {
-            reviewService.deleteReview(userReview); // TODO: this has to be implemented
+            reviewService.deleteReview(userReview);
         }
+        reviewService.addReview(newReview);
     }
 
     public void handleGoBackAction() {
