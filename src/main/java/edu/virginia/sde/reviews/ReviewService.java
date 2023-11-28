@@ -29,6 +29,7 @@ public class ReviewService {
         try {
             databaseDriver.connect();
             databaseDriver.deleteReview(review);
+            databaseDriver.commit();
             databaseDriver.disconnect();
         } catch (SQLException e) {
             throw new RuntimeException();
