@@ -28,6 +28,7 @@ public class NewUserController {
         try {
             validateUserInfo(username, password, confirmPassword);
             userInfoService.addUser(new User(username, password));
+            clearTextFields();
             errorMessageLabel.setText("User creation successful (navigate to login)");
         } catch (UsernameNotAvailableException e) {
             errorMessageLabel.setText(String.format("Username \"%s\" is taken", username));
@@ -36,6 +37,12 @@ public class NewUserController {
         } catch (IncorrectPasswordException e) {
             errorMessageLabel.setText("Passwords do not match");
         }
+    }
+
+    private void clearTextFields() {
+        usernameField.clear();
+        passwordField.clear();
+        confirmPasswordField.clear();
     }
 
     private void validateUserInfo(String username, String password, String confirmPassword) {
