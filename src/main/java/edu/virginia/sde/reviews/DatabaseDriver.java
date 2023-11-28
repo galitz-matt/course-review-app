@@ -270,6 +270,9 @@ public class DatabaseDriver {
             try (var resultSet = avgRatingStatement.executeQuery()) {
                 if (resultSet.next()) {
                     var averageRating = resultSet.getDouble("AverageRating");
+                    if (getAllReviewsByCourseID(courseId).isEmpty()) {
+                        averageRating = -1;
+                    }
                     try (var updateStatement = connection.prepareStatement(updateCoursesQuery)) {
                         updateStatement.setDouble(1, averageRating);
                         updateStatement.setInt(2, courseId);
