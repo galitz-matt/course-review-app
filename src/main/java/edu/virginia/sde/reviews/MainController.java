@@ -4,9 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.imageio.stream.ImageInputStream;
-import java.io.IOException;
-
 public class MainController {
     private final Stage primaryStage;
     private final DatabaseDriver databaseDriver;
@@ -92,6 +89,7 @@ public class MainController {
     public void switchToMyReviews(User user) {
         primaryStage.setScene(myReviewsScene);
         myReviewsController.setUser(user);
+        myReviewsController.updateReviewList();
         primaryStage.show();
     }
 }

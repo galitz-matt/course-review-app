@@ -8,7 +8,6 @@ public class User {
     private final String password;
 
     public User(String username, String password) {
-        this.id = -1;
         this.username = username;
         this.password = password;
     }
@@ -19,8 +18,8 @@ public class User {
         this.password = password;
     }
 
-    public Optional<Integer> getId() {
-        return id == -1 ? Optional.empty() : Optional.of(id);
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {

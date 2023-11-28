@@ -46,7 +46,7 @@ public class CourseSearchController {
                 Course selectedCourse = courseListView.getSelectionModel().getSelectedItem();
                 // TODO: get rid of selected course label, replace w/ commented code
                 selectedCourseLabel.setText("You selected: " + selectedCourse.toString());
-                // mainController.switchToCourseReviews(selectedCourse);
+                // TODO: mainController.switchToCourseReviews(selectedCourse);
             }
         });
     }
