@@ -70,6 +70,7 @@ public class SubmitReviewController {
         }
         reviewService.addReview(newReview);
         userReview = newReview;
+        clearFields();
     }
 
     public void handleGoBackAction() {
