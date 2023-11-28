@@ -76,18 +76,6 @@ public class ReviewService {
         }
     }
 
-    public boolean hasUserReviewedCourse(int userId, int courseId) {
-        var dummyReview = new Review(userId, courseId, 5, "N/A", 0);
-        try {
-            databaseDriver.connect();
-            var hasReviewed = databaseDriver.hasUserReviewedCourse(dummyReview);
-            databaseDriver.disconnect();
-            return hasReviewed;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public String getReviewString(Review review) {
         var stringBuilder = new StringBuilder();
         var course = getCourseByID(review.getCourseId());
