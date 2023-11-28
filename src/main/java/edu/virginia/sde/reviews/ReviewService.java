@@ -1,6 +1,7 @@
 package edu.virginia.sde.reviews;
 
-import javax.xml.crypto.Data;
+import java.sql.SQLException;
+import java.util.List;
 
 public class ReviewService {
     private DatabaseDriver databaseDriver;
@@ -10,6 +11,26 @@ public class ReviewService {
     }
 
     // TODO: addReview method, add review to DB, update avgRating
-    // TODO: getReviewsByUserID method
-    // TODO: getReviewsByCourseID method
+
+    public List<Review> getReviewsByUserID(int userId) {
+        try {
+            databaseDriver.connect();
+            var reviews = databaseDriver.getAllReviewsByUserID(userId);
+            databaseDriver.disconnect();
+            return reviews;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Review> getReviewsByCourseID(int courseId) {
+        try {
+            databaseDriver.connect();
+            var reviews = databaseDriver.getAllReviewsByCourseID(courseId);
+            databaseDriver.disconnect();
+            return reviews;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
