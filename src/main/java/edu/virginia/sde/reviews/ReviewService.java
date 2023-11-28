@@ -13,10 +13,6 @@ public class ReviewService {
     public void addReview(Review review) {
         try {
             databaseDriver.connect();
-            if (hasUserReviewedCourse(review.getUserId(), review.getCourseId())) {
-                databaseDriver.disconnect();
-                throw new CourseAlreadyReviewedException();
-            }
             databaseDriver.addReview(review);
             databaseDriver.commit();
             databaseDriver.disconnect();
