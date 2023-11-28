@@ -109,6 +109,9 @@ public class CourseSearchController {
         mainController.switchToAddCourse(user);
     }
 
+    public void handleMyReviewsAction() {
+        //TODO: implement
+    }
     public void handleLogOutAction() {
         mainController.switchToLogin();
     }

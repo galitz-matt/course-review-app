@@ -38,8 +38,14 @@ public class LoginController {
 
     @FXML
     private void handleNewUserAction() {
-        errorMessageLabel.setText("");
+        clearControls();
         mainController.switchToNewUserSetup();
+    }
+
+    private void clearControls() {
+        errorMessageLabel.setText("");
+        usernameField.clear();
+        passwordField.clear();
     }
 
     @FXML
