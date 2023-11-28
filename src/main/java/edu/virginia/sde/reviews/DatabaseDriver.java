@@ -144,6 +144,7 @@ public class DatabaseDriver {
             preparedStatement.setInt(1, review.getUserId());
             preparedStatement.setInt(2, review.getCourseId());
             preparedStatement.executeUpdate();
+            updateAverageRating(review.getCourseId());
         } catch (SQLException e) {
             rollback();
             throw e;
