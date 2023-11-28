@@ -2,15 +2,13 @@ package edu.virginia.sde.reviews;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Objects;
-import java.util.Optional;
 
 public class Course {
-    private int id;
+    private final int id;
     private final String subject;
     private final int number;
     private final String title;
-    private double avgRating;
+    private final double avgRating;
 
     public Course(String subject, int number, String title) {
         this.id = -1;
