@@ -89,6 +89,7 @@ public class CourseReviewsController {
         if (userReview != null) {
             reviewService.deleteReview(userReview);
             userReview = null;
+            refreshReviewList();
             messageLabel.setText("Your review was deleted successfully, (THIS DOESNT DO ANYTHING RN)"); //TODO: change message
         } else {
             messageLabel.setText("You have not reviewed this course");
