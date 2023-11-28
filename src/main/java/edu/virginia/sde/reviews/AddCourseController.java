@@ -56,6 +56,7 @@ public class AddCourseController {
             var title = titleField.getText();
             verifyInfo(subject, number, title);
             courseService.addCourse(new Course(subject, Integer.parseInt(number), title));
+            clearTextFields();
         } catch (InvalidSubjectException e) {
             messageLabel.setText("Subject must be 2-4 alphabetic characters");
         } catch (NumberFormatException | InvalidNumberException e) {
@@ -64,8 +65,6 @@ public class AddCourseController {
             messageLabel.setText("Title must be at least 1 character");
         } catch (CourseAlreadyExistsException e) {
             messageLabel.setText("Course already exists");
-        } finally {
-            clearTextFields();
         }
     }
 
@@ -88,6 +87,7 @@ public class AddCourseController {
     }
 
     public void handleGoBackAction() {
+        clearTextFields();
         mainController.switchToCourseSelection(user);
     }
 }
