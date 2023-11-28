@@ -72,8 +72,8 @@ public class SubmitReviewController {
 
     public void handleSubmitAction() {
         // TODO: add review, deleting happens only AFTER review is added successfully
-        if (review != null) {
-            reviewService.deleteReview(review); // TODO: this has to be implemented
+        if (userReview != null) {
+            reviewService.deleteReview(userReview); // TODO: this has to be implemented
         }
     }
 
