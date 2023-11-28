@@ -122,6 +122,7 @@ public class MainController {
         primaryStage.setScene(submitReviewScene);
         submitReviewController.setUser(user);
         submitReviewController.setCourse(course);
+        submitReviewController.initializeFields();
         primaryStage.show();
     }
 

@@ -19,6 +19,10 @@ public class SubmitReviewController {
     @FXML
     private Label messageLabel;
 
+    public void initializeFields() {
+
+    }
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
@@ -39,9 +43,16 @@ public class SubmitReviewController {
 
     public void handleSubmitAction() {
         // TODO: implement
+        // If user already reviewed course, delete current review and submit new one
+    }
+
+    public void clearFields() {
+        ratingField.clear();
+        commentField.clear();
     }
 
     public void handleGoBackAction() {
+        clearFields();
         messageLabel.setText("");
         mainController.switchToCourseReviews(user, course);
     }

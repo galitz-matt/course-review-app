@@ -74,4 +74,16 @@ public class ReviewService {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean hasUserReviewedCourse(User user, Course course) {
+        var dummyReview = new Review(user.getId(), course.getId(), 5, "N/A", 0);
+        try {
+            databaseDriver.connect();
+            var hasReviewed = databaseDriver.hasUserReviewedCourse(dummyReview);
+            databaseDriver.disconnect();
+            return hasReviewed;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

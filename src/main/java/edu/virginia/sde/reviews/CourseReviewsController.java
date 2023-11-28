@@ -68,11 +68,13 @@ public class CourseReviewsController {
 
     public void handleAddReviewAction() {
         // TODO: check if user has not submitted review
+        // If user has submitted review, display appropriate message e.g. already submitted review for this course
         mainController.switchToSubmitReview(user, course);
     }
 
     public void handleEditReviewAction() {
         // TODO: check if user has submitted review
+        // If user has not submitted review, display appropriate message e.g. no review to edit for this course
         mainController.switchToSubmitReview(user, course);
     }
 
