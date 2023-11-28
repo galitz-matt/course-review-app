@@ -229,26 +229,22 @@ public class DatabaseDriver {
         return null;
     }
 
-    public void updateCourseAverageRating(int courseId) throws SQLException{
-        try {
-            checkConnection();
-            var selectSql = "SELECT AVG(Rating) as AverageRating FROM Reviews WHERE CourseID = ?;";
-            var updateSql = "UPDATE Courses SET AvgRating = ? WHERE ID = ?;";
-            // TODO: optimize this, more robust statement initialization (try w/ resources),
-            var statement1 = connection.prepareStatement(selectSql);
-            var statement2 = connection.prepareStatement(updateSql);
-            statement1.setInt(1, courseId);
-            ResultSet resultSet = statement1.executeQuery();
-            if (resultSet.next()) {
-                double averageRating = resultSet.getDouble(REVIEWS_RATING);
-                statement2.setDouble(1, averageRating);
-                statement2.setInt(2, courseId);
-                statement2.executeUpdate();
+    public void updateAverageRating(int courseId) throws SQLException{
+        checkConnection();
+        var avgRatingQuery = "SELECT AVG(Rating) AS AverageRating FROM Reviews WHERE CourseID = ?;";
+        var updateCoursesQuery = "UPDATE Courses SET AvgRating = ? WHERE ID = ?";
+        try (var avgRatingStatement = connection.prepareStatement(avgRatingQuery)) {
+            avgRatingStatement.setInt(1, courseId);
+            try (var resultSet = avgRatingStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    var averageRating = resultSet.getDouble("AverageRating");
+                    try (var updateStatement = connection.prepareStatement(updateCoursesQuery)) {
+                        updateStatement.setDouble(1, averageRating);
+                        updateStatement.setInt(2, courseId);
+                        updateStatement.executeUpdate();
+                    }
+                }
             }
-        }
-        catch (SQLException e){
-            rollback();
-            throw e;
         }
     }
 
