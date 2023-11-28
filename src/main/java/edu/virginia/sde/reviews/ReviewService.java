@@ -85,7 +85,9 @@ public class ReviewService {
                 .append("\n Rating: ")
                 .append(review.getRating())
                 .append("\n Comment: ")
-                .append(review.getComment());
+                .append(review.getComment())
+                .append("\n Time Stamp: ")
+                .append(review.getTimeStamp());
         return stringBuilder.toString();
     }
 }
