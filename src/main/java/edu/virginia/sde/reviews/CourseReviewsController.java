@@ -71,12 +71,14 @@ public class CourseReviewsController {
     public void handleAddReviewAction() {
         // TODO: check if user has not submitted review, (is userReview null)
         // If user has submitted review, display appropriate message e.g. already submitted review for this course
+        // ONLY SWITCH SCREENS IF has not submitted review
         mainController.switchToSubmitReview(user, course, userReview);
     }
 
     public void handleEditReviewAction() {
         // TODO: check if user has submitted review, (is userReview not null)
         // If user has not submitted review, display appropriate message e.g. no review to edit for this course
+        // ONLY SWITCH SCREENS IF HAS SUBMITTED REVIEW
         mainController.switchToSubmitReview(user, course, userReview);
     }
 

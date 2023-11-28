@@ -16,8 +16,8 @@
         </VBox.margin>
     </ListView>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
-        <Button text="Add Review" onAction="#handleAddReviewAction"/>
-        <Button text="Edit Review" onAction="#handleEditReviewAction"/>
+        <Button text="Add Your Review" onAction="#handleAddReviewAction"/>
+        <Button text="Edit Your Review" onAction="#handleEditReviewAction"/>
         <Button text="Go Back" onAction="#handleGoBackAction"/>
     </HBox>
 </VBox>
