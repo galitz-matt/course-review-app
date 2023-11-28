@@ -22,9 +22,7 @@ public class CourseSearchController {
     private TextField titleFilter;
     @FXML
     private ListView<Course> courseListView;
-    @FXML
-    private Label selectedCourseLabel;
-    private ObservableList<Course> courses = FXCollections.observableArrayList();
+    private final ObservableList<Course> courses = FXCollections.observableArrayList();
     private FilteredList<Course> filteredData;
 
     public void initializeCourseListView() {

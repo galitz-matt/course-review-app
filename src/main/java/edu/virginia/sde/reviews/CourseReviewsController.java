@@ -30,11 +30,12 @@ public class CourseReviewsController {
                 setText(empty ? null : reviewService.getReviewString(review));
             }
         });
-        reviewListView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
-                selectedReview = reviewListView.getSelectionModel().getSelectedItem();
-            }
-        });
+        // TODO: consider deleting code below
+//        reviewListView.setOnMouseClicked(event -> {
+//            if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
+//                selectedReview = reviewListView.getSelectionModel().getSelectedItem();
+//            }
+//        });
         initialized = true;
     }
 
