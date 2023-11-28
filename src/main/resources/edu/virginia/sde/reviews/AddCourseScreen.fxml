@@ -17,7 +17,7 @@
         <Label text="Title:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <TextField fx:id="titleField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
         <Label fx:id="messageLabel" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <Button text="Add Course" onAction="#handleAddCourseAction" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Button text="Add" onAction="#handleAddAction" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
         <Button text="Go Back" onAction="#handleGoBackAction" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
     </GridPane>
 </VBox>

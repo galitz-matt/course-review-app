@@ -49,7 +49,7 @@ public class AddCourseController {
         this.user = user;
         this.userLabel.setText("Logged in as: " + user.getUsername());
     }
-    public void handleAddCourseAction() {
+    public void handleAddAction() {
         try {
             var subject = subjectField.getText().toUpperCase();
             var number = numberField.getText();
