@@ -23,7 +23,12 @@
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>
     </ListView>
-    <Button text="Add Course" minWidth="80" onAction="#handleAddCourseAction"/>
+    <HBox VBox.vgrow="ALWAYS" spacing="10">
+        <Button text="Add Course" minWidth="80" onAction="#handleAddCourseAction"/>
+        <!-- TODO: add onAction property -->
+        <Button text="My Reviews" minWidth="80"/>
+        <Button text="Log Out" minWidth="80" onAction="#handleLogOutAction"/>
+    </HBox>
     <!-- TODO: label is a placeholder, remove-->
     <Label fx:id="selectedCourseLabel"/>
 </VBox>

@@ -108,4 +108,8 @@ public class CourseSearchController {
     public void handleAddCourseAction() {
         mainController.switchToAddCourse(user);
     }
+
+    public void handleLogOutAction() {
+        mainController.switchToLogin();
+    }
 }
