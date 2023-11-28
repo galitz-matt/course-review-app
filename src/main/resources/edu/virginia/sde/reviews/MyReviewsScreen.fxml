@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<!-- TODO: create screen-->
-<VBox>
-
+<!-- TODO: add controller-->
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <Label fx:id="userLabel"/>
+    <Label text="Your Reviews:"/>
+    <ListView fx:id="myReviewsListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
+        <VBox.margin>
+            <Insets top="10" bottom="10" right="10" left="10"/>
+        </VBox.margin>
+    </ListView>
+    <!-- TODO: add onAction, go back to course search screen-->
+    <Button text="Go Back"/>
 </VBox>

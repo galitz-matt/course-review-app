@@ -23,7 +23,8 @@ public class DatabaseDriver {
             REVIEWS_ID = "ID",
             REVIEWS_COURSEID = "CourseID",
             REVIEWS_USERID = "UserID",
-            REVIEWS_RATING = "Rating";
+            REVIEWS_RATING = "Rating",
+            REVIEWS_COMMENT= "Comment";
 
     public DatabaseDriver(Configuration configuration) {
         this.sqliteFilename = configuration.getDatabaseFilename();
@@ -82,7 +83,8 @@ public class DatabaseDriver {
                         ID INTEGER PRIMARY KEY,
                         CourseID INTEGER NOT NULL,
                         UserID INTEGER NOT NULL,
-                        Rating REAL NOT NULL,
+                        Rating INTEGER NOT NULL,
+                        Comment TEXT,
                         FOREIGN KEY (CourseID) REFERENCES Courses (ID) ON DELETE CASCADE,
                         FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE);
                         """
@@ -118,11 +120,12 @@ public class DatabaseDriver {
     }
     public void addReview(Review review) throws SQLException{
         checkConnection();
-        var query = "INSERT INTO Reviews (CourseID, UserID, Rating) VALUES (?, ?, ?);";
+        var query = "INSERT INTO Reviews (CourseID, UserID, Rating, Comment) VALUES (?, ?, ?, ?);";
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, review.getCourseId());
             preparedStatement.setInt(2, review.getUserId());
-            preparedStatement.setDouble(3, review.getRating());
+            preparedStatement.setInt(3, review.getRating());
+            preparedStatement.setString(4, review.getComment());
             preparedStatement.executeUpdate();
             //updateCourseAverageRating(review.getCourseId());
         } catch (SQLException e) {
@@ -208,8 +211,9 @@ public class DatabaseDriver {
         var id = resultSet.getInt(REVIEWS_ID);
         var courseID = resultSet.getInt(REVIEWS_COURSEID);
         var userID = resultSet.getInt(REVIEWS_USERID);
-        var rating = resultSet.getDouble(REVIEWS_RATING);
-        return new Review(id, courseID,userID,rating);
+        var rating = resultSet.getInt(REVIEWS_RATING);
+        var comment = resultSet.getString(REVIEWS_COMMENT);
+        return new Review(id, courseID, userID, rating, comment);
     }
 
     public User getUser(String username) throws SQLException {
