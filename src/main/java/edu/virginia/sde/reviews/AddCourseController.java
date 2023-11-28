@@ -57,6 +57,13 @@ public class AddCourseController {
 
     public void handleAddCourseAction() {
         courseService.addCourse(buildCourse());
+        clearTextFields();
+    }
+
+    private void clearTextFields() {
+        subjectField.clear();
+        numberField.clear();
+        titleField.clear();
     }
 
     public void handleGoBackAction() {
