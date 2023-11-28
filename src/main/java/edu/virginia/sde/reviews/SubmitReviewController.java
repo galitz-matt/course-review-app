@@ -1,10 +1,9 @@
 package edu.virginia.sde.reviews;
 
-import com.sun.javafx.scene.control.IntegerField;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class ReviewController {
+public class SubmitReviewController {
     private MainController mainController;
     private ReviewService reviewService;
     private User user;
@@ -14,17 +13,17 @@ public class ReviewController {
     @FXML
     private Label courseLabel;
     @FXML
-    private IntegerField ratingField;
+    private TextField ratingField;
     @FXML
     private TextField commentField;
     @FXML
     private Label messageLabel;
 
-    private void setMainController(MainController mainController) {
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
-    private void setReviewService(ReviewService reviewService) {
+    public void setReviewService(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
 

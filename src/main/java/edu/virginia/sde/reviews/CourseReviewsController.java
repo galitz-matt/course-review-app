@@ -66,11 +66,13 @@ public class CourseReviewsController {
     }
 
     public void handleAddReviewAction() {
-        // TODO: implement
+        // TODO: check if user has not submitted review
+        mainController.switchToSubmitReview(user, course);
     }
 
     public void handleEditReviewAction() {
-        // TODO: implement
+        // TODO: check if user has submitted review
+        mainController.switchToSubmitReview(user, course);
     }
 
     public void handleGoBackAction() {

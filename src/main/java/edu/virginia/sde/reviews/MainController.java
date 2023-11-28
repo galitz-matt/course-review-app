@@ -15,11 +15,13 @@ public class MainController {
     private Scene courseSelectionScene;
     private Scene addCourseScene;
     private Scene courseReviewsScene;
+    private Scene submitReviewScene;
     private Scene myReviewsScene;
     private CourseSearchController courseSearchController;
     private AddCourseController addCourseController;
     private CourseReviewsController courseReviewsController;
     private MyReviewsController myReviewsController;
+    private SubmitReviewController submitReviewController;
 
     public MainController(Stage primaryStage, DatabaseDriver databaseDriver) throws IOException {
         this.primaryStage = primaryStage;
@@ -62,6 +64,12 @@ public class MainController {
             courseReviewsController = courseReviewsLoader.getController();
             courseReviewsController.setMainController(this);
             courseReviewsController.setReviewService(reviewService);
+
+            var submitReviewLoader = new FXMLLoader(getClass().getResource("SubmitReviewScreen.fxml"));
+            submitReviewScene = new Scene(submitReviewLoader.load());
+            submitReviewController = submitReviewLoader.getController();
+            submitReviewController.setMainController(this);
+            submitReviewController.setReviewService(reviewService);
 
             var myReviewsLoader = new FXMLLoader(getClass().getResource("MyReviewsScreen.fxml"));
             myReviewsScene = new Scene(myReviewsLoader.load(), 500, 300);
@@ -107,6 +115,13 @@ public class MainController {
         } else {
             courseReviewsController.initializeReviewListView();
         }
+        primaryStage.show();
+    }
+
+    public void switchToSubmitReview(User user, Course course) {
+        primaryStage.setScene(submitReviewScene);
+        submitReviewController.setUser(user);
+        submitReviewController.setCourse(course);
         primaryStage.show();
     }
 
