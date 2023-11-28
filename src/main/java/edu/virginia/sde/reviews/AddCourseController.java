@@ -56,6 +56,7 @@ public class AddCourseController {
             var title = titleField.getText();
             verifyInfo(subject, number, title);
             courseService.addCourse(new Course(subject, Integer.parseInt(number), title));
+            messageLabel.setText("Course created successfully");
             clearTextFields();
         } catch (InvalidSubjectException e) {
             messageLabel.setText("Subject must be 2-4 alphabetic characters");
@@ -88,6 +89,7 @@ public class AddCourseController {
 
     public void handleGoBackAction() {
         clearTextFields();
+        messageLabel.setText("");
         mainController.switchToCourseSelection(user);
     }
 }
