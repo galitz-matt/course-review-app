@@ -2,8 +2,6 @@ package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 public class SubmitReviewController {
     private MainController mainController;
@@ -23,16 +21,13 @@ public class SubmitReviewController {
     private Label messageLabel;
 
     public void initializeFields() {
-        ratingField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
+        ratingField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                ratingField.setText(oldValue);
+            } else if (!newValue.isEmpty()) {
+                int value = Integer.parseInt(newValue);
+                if (value < 1 || value > 5) {
                     ratingField.setText(oldValue);
-                } else if (!newValue.isEmpty()) {
-                    int value = Integer.parseInt(newValue);
-                    if (value < 1 || value > 5) {
-                        ratingField.setText(oldValue);
-                    }
                 }
             }
         });
