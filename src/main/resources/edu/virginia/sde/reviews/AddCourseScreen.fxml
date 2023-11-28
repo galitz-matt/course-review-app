@@ -19,7 +19,7 @@
         <Label text="Title:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <TextField fx:id="titleField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
     </GridPane>
-    <Label fx:id="messageLabel" style="-fx-alignment: baseline-center;"/>
+    <Label fx:id="messageLabel"/>
     <HBox spacing="10" alignment="CENTER">
         <Button text="Add" onAction="#handleAddAction" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
         <Button text="Go Back" onAction="#handleGoBackAction" GridPane.rowIndex="4" GridPane.columnIndex="1"/>

@@ -25,6 +25,10 @@ public class ReviewService {
         }
     }
 
+    public void deleteReview(Review review) {
+        // TODO: implement, gonna need to create new database driver methods
+    }
+
     public List<Review> getReviewsByUserID(int userId) {
         try {
             databaseDriver.connect();
