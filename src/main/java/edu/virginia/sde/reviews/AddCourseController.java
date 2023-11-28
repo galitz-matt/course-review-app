@@ -17,6 +17,8 @@ public class AddCourseController {
     private TextField numberField;
     @FXML
     private TextField titleField;
+    @FXML
+    private Label messageLabel;
 
     public void initialize() {
         courseService = new CourseService(new DatabaseDriver(new Configuration()));
@@ -47,17 +49,34 @@ public class AddCourseController {
         this.user = user;
         this.userLabel.setText("Logged in as: " + user.getUsername());
     }
-
-    public Course buildCourse() {
-        var subject = subjectField.getText();
-        var number = Integer.parseInt(numberField.getText());
-        var title = titleField.getText();
-        return new Course(subject, number, title);
+    public void handleAddCourseAction() {
+        try {
+            var subject = subjectField.getText().toUpperCase();
+            var number = numberField.getText();
+            var title = titleField.getText();
+            verifyInfo(subject, number, title);
+            courseService.addCourse(new Course(subject, Integer.parseInt(number), title));
+        } catch (InvalidSubjectException e) {
+            messageLabel.setText("Subject must be 2-4 alphabetic characters");
+        } catch (NumberFormatException | InvalidNumberException e) {
+            messageLabel.setText("Number must be 4 numeric characters");
+        } catch (InvalidTitleException e) {
+            messageLabel.setText("Title must be at least 1 character");
+        } finally {
+            clearTextFields();
+        }
     }
 
-    public void handleAddCourseAction() {
-        courseService.addCourse(buildCourse());
-        clearTextFields();
+    private void verifyInfo(String subject, String number, String title) {
+        if (!subject.matches("[a-zA-Z]{2,4}")) {
+            throw new InvalidSubjectException();
+        }
+        if (number.length() != 4) {
+            throw new InvalidNumberException();
+        }
+        if (title.length() < 2) {
+            throw new InvalidTitleException();
+        }
     }
 
     private void clearTextFields() {

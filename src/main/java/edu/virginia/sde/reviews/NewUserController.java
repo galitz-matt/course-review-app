@@ -13,7 +13,7 @@ public class NewUserController {
     @FXML
     private PasswordField confirmPasswordField;
     @FXML
-    private Label errorMessageLabel;
+    private Label messageLabel;
 
     protected void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -28,14 +28,15 @@ public class NewUserController {
         try {
             validateUserInfo(username, password, confirmPassword);
             userInfoService.addUser(new User(username, password));
-            clearTextFields();
-            errorMessageLabel.setText("User creation successful (navigate to login)");
+            messageLabel.setText("User creation successful (navigate to login)");
         } catch (UsernameNotAvailableException e) {
-            errorMessageLabel.setText(String.format("Username \"%s\" is taken", username));
+            messageLabel.setText(String.format("Username \"%s\" is taken", username));
         } catch (InvalidPasswordException e) {
-            errorMessageLabel.setText("Password must be at least 8 characters");
+            messageLabel.setText("Password must be at least 8 characters");
         } catch (IncorrectPasswordException e) {
-            errorMessageLabel.setText("Passwords do not match");
+            messageLabel.setText("Passwords do not match");
+        } finally {
+            clearTextFields();
         }
     }
 
@@ -59,7 +60,7 @@ public class NewUserController {
 
     @FXML
     private void handleGoBackAction() {
-        errorMessageLabel.setText("");
+        messageLabel.setText("");
         mainController.switchToLogin();
     }
 }

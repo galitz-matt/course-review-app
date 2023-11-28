@@ -12,7 +12,7 @@
         <Label text="Confirm Password:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <PasswordField fx:id="confirmPasswordField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
     </GridPane>
-    <Label fx:id="errorMessageLabel"/>
+    <Label fx:id="messageLabel"/>
     <HBox spacing="10" alignment="CENTER">
         <Button text="Create Account" minWidth="80" onAction="#handleCreateAccountAction"/>
         <Button text="Go Back" minWidth="80" onAction="#handleGoBackAction"/>
