@@ -6,20 +6,23 @@ public class Review {
     private final int userId;
     private final int rating;
     private final String comment;
+    private final long timeStamp;
 
-    public Review(int courseId, int userId, int rating, String comment) {
+    public Review(int courseId, int userId, int rating, String comment, long timeStamp) {
         this.courseId = courseId;
         this.userId = userId;
         this.rating = rating;
         this.comment = comment;
+        this.timeStamp = timeStamp;
     }
 
-    public Review(int id, int courseId, int userId, int rating, String comment) {
+    public Review(int id, int courseId, int userId, int rating, String comment, long timeStamp) {
         this.id = id;
         this.courseId = courseId;
         this.userId = userId;
         this.rating = rating;
         this.comment = comment;
+        this.timeStamp = timeStamp;
     }
 
     public int getId() {
@@ -43,5 +46,9 @@ public class Review {
             return "N/A";
         }
         return comment;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
     }
 }

@@ -28,8 +28,8 @@ public class Course {
         this.avgRating = avgRating;
     }
 
-    public Optional<Integer> getId() {
-        return id == -1 ? Optional.empty() : Optional.of(id);
+    public int getId() {
+        return id;
     }
 
     public String getSubject() {
@@ -64,12 +64,5 @@ public class Course {
             stringBuilder.append("N/A");
         }
         return stringBuilder.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Course course)) return false;
-        return id == course.id && number == course.number && Objects.equals(subject, course.subject) && Objects.equals(title, course.title);
     }
 }

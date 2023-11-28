@@ -24,7 +24,8 @@ public class DatabaseDriver {
             REVIEWS_COURSEID = "CourseID",
             REVIEWS_USERID = "UserID",
             REVIEWS_RATING = "Rating",
-            REVIEWS_COMMENT= "Comment";
+            REVIEWS_COMMENT = "Comment",
+            REVIEWS_TIMESTAMP = "TimeStamp";
 
     public DatabaseDriver(Configuration configuration) {
         this.sqliteFilename = configuration.getDatabaseFilename();
@@ -85,6 +86,7 @@ public class DatabaseDriver {
                         UserID INTEGER NOT NULL,
                         Rating INTEGER NOT NULL,
                         Comment TEXT,
+                        TimeStamp INTEGER NOT NULL,
                         FOREIGN KEY (CourseID) REFERENCES Courses (ID) ON DELETE CASCADE,
                         FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE);
                         """
@@ -120,12 +122,13 @@ public class DatabaseDriver {
     }
     public void addReview(Review review) throws SQLException{
         checkConnection();
-        var query = "INSERT INTO Reviews (CourseID, UserID, Rating, Comment) VALUES (?, ?, ?, ?);";
+        var query = "INSERT INTO Reviews (CourseID, UserID, Rating, Comment, TimeStamp) VALUES (?, ?, ?, ?, ?);";
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, review.getCourseId());
             preparedStatement.setInt(2, review.getUserId());
             preparedStatement.setInt(3, review.getRating());
             preparedStatement.setString(4, review.getComment());
+            preparedStatement.setLong(5, review.getTimeStamp());
             preparedStatement.executeUpdate();
             updateAverageRating(review.getCourseId());
         } catch (SQLException e) {
@@ -199,7 +202,8 @@ public class DatabaseDriver {
         var userID = resultSet.getInt(REVIEWS_USERID);
         var rating = resultSet.getInt(REVIEWS_RATING);
         var comment = resultSet.getString(REVIEWS_COMMENT);
-        return new Review(id, courseID, userID, rating, comment);
+        var timeStamp = resultSet.getLong(REVIEWS_TIMESTAMP);
+        return new Review(id, courseID, userID, rating, comment, timeStamp);
     }
 
     public User getUser(String username) throws SQLException {
