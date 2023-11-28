@@ -89,7 +89,7 @@ public class MainController {
     public void switchToMyReviews(User user) {
         primaryStage.setScene(myReviewsScene);
         myReviewsController.setUser(user);
-        myReviewsController.updateReviewList();
+        myReviewsController.refreshReviewList();
         primaryStage.show();
     }
 }

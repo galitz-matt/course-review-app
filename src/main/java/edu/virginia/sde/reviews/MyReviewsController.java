@@ -19,7 +19,7 @@ public class MyReviewsController {
 
     public void initialize() {
         reviewService = new ReviewService(new DatabaseDriver(new Configuration()));
-        updateReviewList();
+        refreshReviewList();
         reviewListView.setItems(reviews);
         reviewListView.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -47,7 +47,7 @@ public class MyReviewsController {
         userLabel.setText("Logged in as: " + user.getUsername());
     }
 
-    public void updateReviewList() {
+    public void refreshReviewList() {
         reviews.clear();
         reviews.addAll(reviewService.getReviewsByUserID(user.getId()));
     }
