@@ -118,14 +118,13 @@ public class DatabaseDriver {
     }
     public void addReview(Review review) throws SQLException{
         checkConnection();
-        var query = "INSERT INTO Reviews (Id, CourseID, UserID, Rating) VALUES (?, ?, ?, ?);";
+        var query = "INSERT INTO Reviews (CourseID, UserID, Rating) VALUES (?, ?, ?);";
         try (var preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, review.getId());
-            preparedStatement.setInt(2, review.getCourseId());
-            preparedStatement.setInt(3, review.getUserId());
-            preparedStatement.setDouble(4, review.getRating());
+            preparedStatement.setInt(1, review.getCourseId());
+            preparedStatement.setInt(2, review.getUserId());
+            preparedStatement.setDouble(3, review.getRating());
             preparedStatement.executeUpdate();
-            updateCourseAverageRating(review.getCourseId());
+            //updateCourseAverageRating(review.getCourseId());
         } catch (SQLException e) {
             rollback();
             throw e;
@@ -161,6 +160,7 @@ public class DatabaseDriver {
     }
 
     public List<Review> getAllReviews() throws SQLException {
+        //TODO: get reviews by id
         checkConnection();
         var reviews = new ArrayList<Review>();
         var query = "SELECT * FROM Reviews";
