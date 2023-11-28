@@ -21,7 +21,7 @@
         <Label text="Comment: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <TextField fx:id="commentField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </GridPane>
-    <Label fx:id="messageLabel" />
+    <Label fx:id="messageLabel"/>
     <HBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
         <Button text="Submit" onAction="#handleSubmitAction"/>
         <Button text="Go Back" onAction="#handleGoBackAction"/>
