@@ -159,7 +159,7 @@ public class DatabaseDriver {
         }
         return courses;
     }
-    
+
     public List<Review> getAllReviews() throws SQLException {
         checkConnection();
         var reviews = new ArrayList<Review>();
@@ -238,6 +238,21 @@ public class DatabaseDriver {
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, username);
             try (var resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBoolean(1);
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isCourseInDatabase(Course course) throws SQLException {
+        var query = "SELECT 1 FROM Courses WHERE Subject = ? AND Number = ? AND Title = ?;";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, course.getSubject());
+            preparedStatement.setInt(2, course.getNumber());
+            preparedStatement.setString(3, course.getTitle().strip());
+            try(var resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return resultSet.getBoolean(1);
                 }

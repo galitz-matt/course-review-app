@@ -28,6 +28,7 @@ public class LoginController {
         String password = passwordField.getText();
         try {
             var user = userInfoService.getUser(username, password);
+            clearControls();
             mainController.switchToCourseSelection(user);
         } catch (InvalidUsernameException e) {
             errorMessageLabel.setText("Username is incorrect or does not exist");

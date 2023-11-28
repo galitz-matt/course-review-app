@@ -24,6 +24,9 @@ public class CourseService {
     public void addCourse(Course course) {
         try {
             databaseDriver.connect();
+            if (databaseDriver.isCourseInDatabase()) {
+                throw new CourseAlreadyExistsException();
+            }
             databaseDriver.addCourse(course);
             databaseDriver.commit();
             databaseDriver.disconnect();
