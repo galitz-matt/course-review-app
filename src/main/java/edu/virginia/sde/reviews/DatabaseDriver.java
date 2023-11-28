@@ -160,7 +160,7 @@ public class DatabaseDriver {
     }
 
     public List<Review> getAllReviews() throws SQLException {
-        //TODO: get reviews by id
+        //TODO: get reviews by id, change method signature
         checkConnection();
         var reviews = new ArrayList<Review>();
         var query = "SELECT * FROM Reviews";

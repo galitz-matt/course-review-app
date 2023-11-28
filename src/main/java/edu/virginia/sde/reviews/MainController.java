@@ -49,6 +49,8 @@ public class MainController {
             addCourseScene = new Scene(addCourseLoader.load(), 300, 200);
             addCourseController = addCourseLoader.getController();
             addCourseController.setMainController(this);
+
+            //TODO: load MyReviews screen, create scene, inject controller dependencies
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
