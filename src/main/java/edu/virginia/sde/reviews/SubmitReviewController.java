@@ -26,11 +26,11 @@ public class SubmitReviewController {
         ratingField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) { // Check if the new value is a digit
+                if (!newValue.matches("\\d*")) {
                     ratingField.setText(oldValue);
                 } else if (!newValue.isEmpty()) {
                     int value = Integer.parseInt(newValue);
-                    if (value < 1 || value > 5) { // Check if the value is between 1 and 5
+                    if (value < 1 || value > 5) {
                         ratingField.setText(oldValue);
                     }
                 }
