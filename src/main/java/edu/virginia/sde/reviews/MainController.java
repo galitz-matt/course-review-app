@@ -46,7 +46,7 @@ public class MainController {
             courseSearchController.setMainController(this);
 
             var addCourseLoader = new FXMLLoader(getClass().getResource("AddCourseScreen.fxml"));
-            addCourseScene = new Scene(addCourseLoader.load());
+            addCourseScene = new Scene(addCourseLoader.load(), 300, 200);
             addCourseController = addCourseLoader.getController();
             addCourseController.setMainController(this);
         } catch (Exception e) {
