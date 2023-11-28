@@ -29,6 +29,7 @@ public class NewUserController {
             validateUserInfo(username, password, confirmPassword);
             userInfoService.addUser(new User(username, password));
             messageLabel.setText("User creation successful (navigate to login)");
+            clearTextFields();
         } catch (InvalidUsernameException e) {
             messageLabel.setText("Username is empty");
         } catch (UsernameNotAvailableException e) {
@@ -37,8 +38,6 @@ public class NewUserController {
             messageLabel.setText("Password must be at least 8 characters");
         } catch (IncorrectPasswordException e) {
             messageLabel.setText("Passwords do not match");
-        } finally {
-            clearTextFields();
         }
     }
 
