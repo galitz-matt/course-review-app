@@ -29,6 +29,8 @@ public class NewUserController {
             validateUserInfo(username, password, confirmPassword);
             userInfoService.addUser(new User(username, password));
             messageLabel.setText("User creation successful (navigate to login)");
+        } catch (InvalidUsernameException e) {
+            messageLabel.setText("Username is empty");
         } catch (UsernameNotAvailableException e) {
             messageLabel.setText(String.format("Username \"%s\" is taken", username));
         } catch (InvalidPasswordException e) {
@@ -47,6 +49,9 @@ public class NewUserController {
     }
 
     private void validateUserInfo(String username, String password, String confirmPassword) {
+        if (username.isEmpty()) {
+            throw new InvalidUsernameException();
+        }
         if (!userInfoService.isUsernameAvailable(username)) {
             throw new UsernameNotAvailableException();
         }
