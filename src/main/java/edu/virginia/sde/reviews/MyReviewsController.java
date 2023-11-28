@@ -22,7 +22,7 @@ public class MyReviewsController {
 
     public void setUser(User user) {
         this.user = user;
-        userLabel.setText("Logged in as: " + user);
+        userLabel.setText("Logged in as: " + user.getUsername());
     }
 
     public void handleGoBackAction() {
