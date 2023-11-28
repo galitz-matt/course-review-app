@@ -15,9 +15,9 @@
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>
     </ListView>
-    <HBox>
-        <Button text="Add Review"/>
-        <Button text="Edit Review"/>
+    <HBox spacing="10" VBox.vgrow="ALWAYS">
+        <Button text="Add Review" onAction="#handleAddReviewAction"/>
+        <Button text="Edit Review" onAction="#handleEditReviewAction"/>
         <Button text="Go Back" onAction="#handleGoBackAction"/>
     </HBox>
 </VBox>

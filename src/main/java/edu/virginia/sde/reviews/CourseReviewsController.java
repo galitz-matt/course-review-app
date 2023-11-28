@@ -65,6 +65,14 @@ public class CourseReviewsController {
         reviews.addAll(reviewService.getReviewsByCourseID(course.getId()));
     }
 
+    public void handleAddReviewAction() {
+        // TODO: implement
+    }
+
+    public void handleEditReviewAction() {
+        // TODO: implement
+    }
+
     public void handleGoBackAction() {
         mainController.switchToCourseSelection(user);
     }
