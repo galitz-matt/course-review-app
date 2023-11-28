@@ -74,6 +74,7 @@ public class SubmitReviewController {
             reviewService.deleteReview(userReview);
         }
         reviewService.addReview(newReview);
+        userReview = newReview;
     }
 
     public void handleGoBackAction() {
