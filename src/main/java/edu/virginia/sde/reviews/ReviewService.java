@@ -58,7 +58,14 @@ public class ReviewService {
         return stringBuilder.toString();
     }
 
-    public Course getCourseByID() {
-
+    public Course getCourseByID(int id) {
+        try {
+            databaseDriver.connect();
+            var course = databaseDriver.getCourse(id);
+            databaseDriver.disconnect();
+            return course;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
