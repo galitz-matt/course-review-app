@@ -5,16 +5,20 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class MyReviewsController {
+public class CourseReviewsController {
     private MainController mainController;
     private ReviewService reviewService;
     private User user;
+    private Course course;
+    private boolean initialized = false;
     @FXML
     private Label userLabel;
     @FXML
+    private Label courseLabel;
+    @FXML
     private ListView<Review> reviewListView;
     private final ObservableList<Review> reviews = FXCollections.observableArrayList();
-    private boolean initialized = false;
+    private Review selectedReview;
 
     public void initializeReviewListView() {
         refreshReviewList();
@@ -28,14 +32,13 @@ public class MyReviewsController {
         });
         reviewListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
-                Review selectedReview = reviewListView.getSelectionModel().getSelectedItem();
-                mainController.switchToCourseReviews(user, reviewService.getCourseByID(selectedReview.getCourseId()));
+                selectedReview = reviewListView.getSelectionModel().getSelectedItem();
             }
         });
         initialized = true;
     }
 
-    public boolean isReviewListViewInitialized() {
+    public boolean isReviewListInitialized() {
         return initialized;
     }
 
@@ -52,13 +55,17 @@ public class MyReviewsController {
         userLabel.setText("Logged in as: " + user.getUsername());
     }
 
+    public void setCourse(Course course) {
+        this.course = course;
+        courseLabel.setText("Reviews for " + course.getSubject() + " " + course.getNumber() + ": ");
+    }
+
     public void refreshReviewList() {
         reviews.clear();
-        reviews.addAll(reviewService.getReviewsByUserID(user.getId()));
+        reviews.addAll(reviewService.getReviewsByCourseID(course.getId()));
     }
 
     public void handleGoBackAction() {
         mainController.switchToCourseSelection(user);
     }
-
 }

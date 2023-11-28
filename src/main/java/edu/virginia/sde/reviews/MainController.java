@@ -14,9 +14,11 @@ public class MainController {
     private Scene newUserScene;
     private Scene courseSelectionScene;
     private Scene addCourseScene;
+    private Scene courseReviewsScene;
     private Scene myReviewsScene;
     private CourseSearchController courseSearchController;
     private AddCourseController addCourseController;
+    private CourseReviewsController courseReviewsController;
     private MyReviewsController myReviewsController;
 
     public MainController(Stage primaryStage, DatabaseDriver databaseDriver) throws IOException {
@@ -29,6 +31,7 @@ public class MainController {
         try {
             var userInfoService = new UserInfoService(databaseDriver);
             var courseService = new CourseService(databaseDriver);
+            var reviewService = new ReviewService(databaseDriver);
 
             var loginLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
             loginScene = new Scene(loginLoader.load(), 300, 200);
@@ -46,7 +49,7 @@ public class MainController {
             courseSelectionScene = new Scene(courseSearchLoader.load());
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
-            courseSearchController.setCourseService(new CourseService(databaseDriver));
+            courseSearchController.setCourseService(courseService);
             courseSearchController.initializeCourseListView();
 
             var addCourseLoader = new FXMLLoader(getClass().getResource("AddCourseScreen.fxml"));
@@ -54,11 +57,17 @@ public class MainController {
             addCourseController = addCourseLoader.getController();
             addCourseController.setMainController(this);
 
+            var courseReviewsLoader = new FXMLLoader(getClass().getResource("CourseReviewsScreen.fxml"));
+            courseReviewsScene = new Scene(courseReviewsLoader.load(), 500, 300);
+            courseReviewsController = courseReviewsLoader.getController();
+            courseReviewsController.setMainController(this);
+            courseReviewsController.setReviewService(reviewService);
+
             var myReviewsLoader = new FXMLLoader(getClass().getResource("MyReviewsScreen.fxml"));
             myReviewsScene = new Scene(myReviewsLoader.load(), 500, 300);
             myReviewsController = myReviewsLoader.getController();
             myReviewsController.setMainController(this);
-            myReviewsController.setReviewService(new ReviewService(databaseDriver));
+            myReviewsController.setReviewService(reviewService);
         } catch (Exception e) {
             throw e;
             // TODO: change back when completely finished
@@ -89,9 +98,16 @@ public class MainController {
         primaryStage.show();
     }
 
-    //TODO: switchToCourseReviews
     public void switchToCourseReviews(User user, Course course) {
-
+        primaryStage.setScene(courseReviewsScene);
+        courseReviewsController.setUser(user);
+        courseReviewsController.setCourse(course);
+        if (courseReviewsController.isReviewListInitialized()) {
+            courseReviewsController.refreshReviewList();
+        } else {
+            courseReviewsController.initializeReviewListView();
+        }
+        primaryStage.show();
     }
 
     public void switchToMyReviews(User user) {

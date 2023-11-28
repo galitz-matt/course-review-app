@@ -43,9 +43,7 @@ public class CourseSearchController {
         courseListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && !courseListView.getSelectionModel().isEmpty()) {
                 Course selectedCourse = courseListView.getSelectionModel().getSelectedItem();
-                // TODO: get rid of selected course label, replace w/ commented code
-                selectedCourseLabel.setText("You selected: " + selectedCourse.toString());
-                // TODO: mainController.switchToCourseReviews(selectedCourse);
+                mainController.switchToCourseReviews(user, selectedCourse);
             }
         });
     }

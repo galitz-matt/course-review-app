@@ -28,6 +28,4 @@
         <Button text="My Reviews" minWidth="80" onAction="#handleMyReviewsAction"/>
         <Button text="Log Out" minWidth="80" onAction="#handleLogOutAction"/>
     </HBox>
-    <!-- TODO: label is a placeholder, remove-->
-    <Label fx:id="selectedCourseLabel"/>
 </VBox>
