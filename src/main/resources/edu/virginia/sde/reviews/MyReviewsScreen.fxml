@@ -10,7 +10,7 @@
     </padding>
     <Label fx:id="userLabel"/>
     <Label text="Your Reviews:"/>
-    <ListView fx:id="myReviewsListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
+    <ListView fx:id="reviewsListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>

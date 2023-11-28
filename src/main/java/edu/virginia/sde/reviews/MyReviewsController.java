@@ -9,6 +9,8 @@ public class MyReviewsController {
     private User user;
     @FXML
     private Label userLabel;
+    @FXML
+    private ListView<Review> reviewsListView;
 
     public void initialize() {
         //TODO: display all user reviews via ListView, make reviews clickable
