@@ -57,7 +57,7 @@ public class Course {
                 .append(number)
                 .append(": ")
                 .append(title)
-                .append(" - ");
+                .append("\n Rating: ");
         if (avgRating != -1) {
             stringBuilder.append(getAvgRating());
         } else {
