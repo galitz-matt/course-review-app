@@ -310,18 +310,4 @@ public class DatabaseDriver {
         }
         return false;
     }
-
-    public boolean hasUserReviewedCourse(Review review) throws SQLException {
-        var query = "SELECT 1 FROM Reviews WHERE UserID = ? AND CourseID = ?";
-        try (var preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, review.getUserId());
-            preparedStatement.setInt(2, review.getCourseId());
-            try (var resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getBoolean(1);
-                }
-            }
-        }
-        return false;
-    }
 }

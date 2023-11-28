@@ -4,8 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class MainController {
     private final Stage primaryStage;
     private final DatabaseDriver databaseDriver;
@@ -22,13 +20,13 @@ public class MainController {
     private MyReviewsController myReviewsController;
     private SubmitReviewController submitReviewController;
 
-    public MainController(Stage primaryStage, DatabaseDriver databaseDriver) throws IOException {
+    public MainController(Stage primaryStage, DatabaseDriver databaseDriver) {
         this.primaryStage = primaryStage;
         this.databaseDriver = databaseDriver;
         initScenes();
     }
 
-    private void initScenes() throws IOException {
+    private void initScenes() {
         try {
             var userInfoService = new UserInfoService(databaseDriver);
             var courseService = new CourseService(databaseDriver);
@@ -76,9 +74,7 @@ public class MainController {
             myReviewsController.setMainController(this);
             myReviewsController.setReviewService(reviewService);
         } catch (Exception e) {
-            throw e;
-            // TODO: change back when completely finished
-            // throw new RuntimeException("Failed to load scenes");
+            throw new RuntimeException("Failed to load scenes");
         }
     }
 
