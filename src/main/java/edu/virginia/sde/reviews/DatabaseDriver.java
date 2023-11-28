@@ -145,6 +145,7 @@ public class DatabaseDriver {
         }
         return users;
     }
+
     public List<Course> getAllCourses() throws SQLException{
         checkConnection();
         var courses = new ArrayList<Course>();
@@ -158,6 +159,7 @@ public class DatabaseDriver {
         }
         return courses;
     }
+    
     public List<Review> getAllReviews() throws SQLException {
         checkConnection();
         var reviews = new ArrayList<Review>();

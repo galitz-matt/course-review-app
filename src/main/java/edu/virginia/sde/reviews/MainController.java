@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainController {
     private final Stage primaryStage;
     private final DatabaseDriver databaseDriver;
@@ -39,8 +41,6 @@ public class MainController {
             courseSelectionScene = new Scene(courseSearchLoader.load());
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
-            courseSearchController.setCourseService(courseService);
-
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
@@ -59,6 +59,12 @@ public class MainController {
     public void switchToCourseSelection(User user) {
         primaryStage.setScene(courseSelectionScene);
         courseSearchController.setUser(user);
+        //TODO: update courses
         primaryStage.show();
+    }
+
+    //TODO: switchToCourseReviews
+    public void switchToCourseReviews(User user, Course course) {
+
     }
 }
