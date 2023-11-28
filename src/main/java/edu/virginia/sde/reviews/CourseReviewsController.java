@@ -73,6 +73,7 @@ public class CourseReviewsController {
         // TODO: check if user has not submitted review, (is userReview null)
         // If user has submitted review, display appropriate message e.g. already submitted review for this course
         // ONLY SWITCH SCREENS IF has not submitted review
+        messageLabel.setText("");
         mainController.switchToSubmitReview(user, course, userReview);
     }
 
@@ -80,6 +81,7 @@ public class CourseReviewsController {
         // TODO: check if user has submitted review, (is userReview not null)
         // If user has not submitted review, display appropriate message e.g. no review to edit for this course
         // ONLY SWITCH SCREENS IF HAS SUBMITTED REVIEW
+        messageLabel.setText("");
         mainController.switchToSubmitReview(user, course, userReview);
     }
 
@@ -87,13 +89,14 @@ public class CourseReviewsController {
         if (userReview != null) {
             reviewService.deleteReview(userReview);
             userReview = null;
-            messageLabel.setText("Your review was deleted successfully");
+            messageLabel.setText("Your review was deleted successfully, (THIS DOESNT DO ANYTHING RN)"); //TODO: change message
         } else {
             messageLabel.setText("You have not reviewed this course");
         }
     }
 
     public void handleGoBackAction() {
+        messageLabel.setText("");
         mainController.switchToCourseSelection(user);
     }
 }
