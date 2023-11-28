@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <Label fx:id="userLabel"/>
+    <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
+        <Label text="Subject:"/>
+        <TextField fx:id="subjectField"/>
+    </HBox>
+    <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
+        <Label text="Number:"/>
+        <TextField fx:id="numberField"/>
+    </HBox>
+    <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
+        <Label text="Title:"/>
+        <TextField fx:id="titleField"/>
+    </HBox>
+    <Button text="Add Course"/>
+</VBox>

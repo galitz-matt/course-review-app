@@ -23,5 +23,7 @@
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>
     </ListView>
+    <Button text="Add Course" minWidth="80" onAction=""/>
+    <!-- TODO: label is a placeholder, remove-->
     <Label fx:id="selectedCourseLabel"/>
 </VBox>
