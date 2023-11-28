@@ -12,7 +12,7 @@
    </GridPane>
    <Label fx:id="errorMessageLabel"/>
    <HBox spacing="10" alignment="CENTER">
-      <Button text="Log-In" minWidth="80" onAction="#handleLoginAction"/>
+      <Button text="Log In" minWidth="80" onAction="#handleLoginAction"/>
       <Button text="New User" minWidth="80" onAction="#handleNewUserAction"/>
       <Button text="Exit" fx:id="exitButton" minWidth="80" onAction="#handleExitAction"/>
    </HBox>
