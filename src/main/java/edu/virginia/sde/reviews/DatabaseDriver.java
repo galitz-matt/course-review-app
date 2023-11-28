@@ -159,13 +159,28 @@ public class DatabaseDriver {
         return courses;
     }
 
-    public List<Review> getAllReviews() throws SQLException {
-        //TODO: get reviews by id, change method signature
+    public List<Review> getAllReviewsByUserID(int userId) throws SQLException {
         checkConnection();
         var reviews = new ArrayList<Review>();
-        var query = "SELECT * FROM Reviews";
-        try (var statement = connection.prepareStatement(query)) {
-            try(var resultSet = statement.executeQuery()) {
+        var query = "SELECT * FROM Reviews WHERE UserID = ?;";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, userId);
+            try (var resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    reviews.add(buildReview(resultSet));
+                }
+            }
+        }
+        return reviews;
+    }
+
+    public List<Review> getAllReviewsByCourseID(int courseId) throws SQLException {
+        checkConnection();
+        var reviews = new ArrayList<Review>();
+        var query = "SELECT * FROM Reviews WHERE CourseID = ?;";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, courseId);
+            try (var resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     reviews.add(buildReview(resultSet));
                 }
