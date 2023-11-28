@@ -14,8 +14,10 @@ public class MainController {
     private Scene newUserScene;
     private Scene courseSelectionScene;
     private Scene addCourseScene;
+    private Scene myReviewsScene;
     private CourseSearchController courseSearchController;
     private AddCourseController addCourseController;
+    private MyReviewsController myReviewsController;
 
     public MainController(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -50,7 +52,10 @@ public class MainController {
             addCourseController = addCourseLoader.getController();
             addCourseController.setMainController(this);
 
-            //TODO: load MyReviews screen, create scene, inject controller dependencies
+            var myReviewsLoader = new FXMLLoader(getClass().getResource("MyReviewsScreen.fxml"));
+            myReviewsScene = new Scene(myReviewsLoader.load(), 300, 200);
+            myReviewsController = myReviewsLoader.getController();
+            myReviewsController.setMainController(this);
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
@@ -82,5 +87,11 @@ public class MainController {
     //TODO: switchToCourseReviews
     public void switchToCourseReviews(User user, Course course) {
 
+    }
+
+    public void switchToMyReviews(User user) {
+        primaryStage.setScene(myReviewsScene);
+        myReviewsController.setUser(user);
+        primaryStage.show();
     }
 }

@@ -110,7 +110,7 @@ public class CourseSearchController {
     }
 
     public void handleMyReviewsAction() {
-        //TODO: implement
+        mainController.switchToMyReviews(user);
     }
     public void handleLogOutAction() {
         mainController.switchToLogin();
