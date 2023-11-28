@@ -2,6 +2,8 @@ package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 public class SubmitReviewController {
     private MainController mainController;
@@ -21,6 +23,19 @@ public class SubmitReviewController {
     private Label messageLabel;
 
     public void initializeFields() {
+        ratingField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) { // Check if the new value is a digit
+                    ratingField.setText(oldValue);
+                } else if (!newValue.isEmpty()) {
+                    int value = Integer.parseInt(newValue);
+                    if (value < 1 || value > 5) { // Check if the value is between 1 and 5
+                        ratingField.setText(oldValue);
+                    }
+                }
+            }
+        });
         if (reviewService.hasUserReviewedCourse(user.getId(), course.getId())) {
             review = reviewService.getReview(user.getId(), course.getId());
             ratingField.setText(String.valueOf(review.getRating()));
@@ -52,8 +67,10 @@ public class SubmitReviewController {
     }
 
     public void handleSubmitAction() {
-        // TODO: implement
-        // If user already reviewed course, delete current review and submit new one
+        // TODO: add review, deleting happens only AFTER review is added successfully
+        if (review != null) {
+            reviewService.deleteReview(review); // TODO: this has to be implemented
+        }
     }
 
     public void handleGoBackAction() {
