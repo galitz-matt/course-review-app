@@ -45,9 +45,7 @@ public class Course {
     }
 
     public double getAvgRating() {
-        var rating = BigDecimal.valueOf(avgRating);
-        var truncatedRating = rating.setScale(2, RoundingMode.DOWN);
-        return truncatedRating.doubleValue();
+        return avgRating;
     }
 
     public String toString() {
@@ -59,7 +57,8 @@ public class Course {
                 .append(title)
                 .append("\n Rating: ");
         if (avgRating != -1) {
-            stringBuilder.append(getAvgRating());
+            var truncated = BigDecimal.valueOf(getAvgRating()).setScale(2, RoundingMode.DOWN);
+            stringBuilder.append(truncated);
         } else {
             stringBuilder.append("N/A");
         }
