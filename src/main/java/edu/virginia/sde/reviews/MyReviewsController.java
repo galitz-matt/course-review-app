@@ -25,7 +25,7 @@ public class MyReviewsController {
             @Override
             protected void updateItem(Review review, boolean empty) {
                 super.updateItem(review, empty);
-                setText(empty ? null : review.toString());
+                setText(empty ? null : reviewService.getReviewString(review));
             }
         });
         reviewListView.setOnMouseClicked(event -> {
