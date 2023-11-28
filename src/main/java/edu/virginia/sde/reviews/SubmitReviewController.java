@@ -46,14 +46,14 @@ public class SubmitReviewController {
         courseLabel.setText("Reviewing for: " + course.getSubject() + " " + course.getNumber());
     }
 
-    public void handleSubmitAction() {
-        // TODO: implement
-        // If user already reviewed course, delete current review and submit new one
-    }
-
     public void clearFields() {
         ratingField.clear();
         commentField.clear();
+    }
+
+    public void handleSubmitAction() {
+        // TODO: implement
+        // If user already reviewed course, delete current review and submit new one
     }
 
     public void handleGoBackAction() {
