@@ -55,12 +55,13 @@ public class MainController {
             addCourseController.setMainController(this);
 
             var myReviewsLoader = new FXMLLoader(getClass().getResource("MyReviewsScreen.fxml"));
-            myReviewsScene = new Scene(myReviewsLoader.load(), 300, 200);
+            myReviewsScene = new Scene(myReviewsLoader.load(), 500, 300);
             myReviewsController = myReviewsLoader.getController();
             myReviewsController.setMainController(this);
             myReviewsController.setReviewService(new ReviewService(databaseDriver));
         } catch (Exception e) {
             throw e;
+            // TODO: change back when completely finished
             // throw new RuntimeException("Failed to load scenes");
         }
     }

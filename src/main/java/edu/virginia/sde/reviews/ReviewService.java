@@ -53,8 +53,10 @@ public class ReviewService {
         stringBuilder.append(course.getSubject())
                 .append(" ")
                 .append(course.getNumber())
-                .append(" - ")
-                .append(review.getRating());
+                .append("\n Rating: ")
+                .append(review.getRating())
+                .append("\n Comment: ")
+                .append(review.getComment());
         return stringBuilder.toString();
     }
 
