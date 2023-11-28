@@ -10,7 +10,20 @@ public class ReviewService {
         this.databaseDriver = databaseDriver;
     }
 
-    // TODO: addReview method, add review to DB, update avgRating
+    public void addReview(Review review) {
+        try {
+            databaseDriver.connect();
+            if (databaseDriver.hasUserReviewedCourse(review)) {
+                databaseDriver.disconnect();
+                throw new CourseAlreadyReviewedException();
+            }
+            databaseDriver.addReview(review);
+            databaseDriver.commit();
+            databaseDriver.disconnect();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<Review> getReviewsByUserID(int userId) {
         try {
