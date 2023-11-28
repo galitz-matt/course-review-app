@@ -59,7 +59,7 @@ public class MainController {
     public void switchToCourseSelection(User user) {
         primaryStage.setScene(courseSelectionScene);
         courseSearchController.setUser(user);
-        //TODO: update courses
+        courseSearchController.createCourses();
         primaryStage.show();
     }
 

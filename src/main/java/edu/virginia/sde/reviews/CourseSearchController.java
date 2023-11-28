@@ -24,13 +24,13 @@ public class CourseSearchController {
     private ListView<Course> courseListView;
     @FXML
     private Label selectedCourseLabel;
-    private final ObservableList<Course> courses = FXCollections.observableArrayList();
+    private ObservableList<Course> courses;
     private FilteredList<Course> filteredData;
 
     public void initialize() {
         courseService = new CourseService(new DatabaseDriver(new Configuration()));
         addFilterLengthRestrictions();
-        courses.addAll(courseService.getCourses());
+        createCourses();
         filteredData = new FilteredList<>(courses, p -> true);
         courseListView.setItems(filteredData);
         addFilterListeners();
@@ -96,12 +96,13 @@ public class CourseSearchController {
         this.mainController = mainController;
     }
 
-    public void setCourseService(CourseService courseService) {
-        this.courseService = courseService;
-    }
-
     public void setUser(User user) {
         this.user = user;
         this.userLabel.setText("Logged in as: " + user.getUsername());
+    }
+
+    public void createCourses() {
+        courses = FXCollections.observableArrayList();
+        courses.addAll(courseService.getCourses());
     }
 }
