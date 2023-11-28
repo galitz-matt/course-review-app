@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainController {
     private final Stage primaryStage;
     private final DatabaseDriver databaseDriver;
@@ -16,13 +18,13 @@ public class MainController {
     private AddCourseController addCourseController;
     private MyReviewsController myReviewsController;
 
-    public MainController(Stage primaryStage) {
+    public MainController(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
         this.databaseDriver = new DatabaseDriver(new Configuration());
         initScenes();
     }
 
-    private void initScenes() {
+    private void initScenes() throws IOException {
         try {
             var userInfoService = new UserInfoService(databaseDriver);
             var courseService = new CourseService(databaseDriver);
@@ -54,7 +56,8 @@ public class MainController {
             myReviewsController = myReviewsLoader.getController();
             myReviewsController.setMainController(this);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load scenes");
+            throw e;
+            // throw new RuntimeException("Failed to load scenes");
         }
     }
 
@@ -89,7 +92,7 @@ public class MainController {
     public void switchToMyReviews(User user) {
         primaryStage.setScene(myReviewsScene);
         myReviewsController.setUser(user);
-        myReviewsController.refreshReviewList();
+        myReviewsController.initializeReviewListView();
         primaryStage.show();
     }
 }

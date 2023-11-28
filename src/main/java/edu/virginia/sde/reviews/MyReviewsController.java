@@ -19,6 +19,9 @@ public class MyReviewsController {
 
     public void initialize() {
         reviewService = new ReviewService(new DatabaseDriver(new Configuration()));
+    }
+
+    public void initializeReviewListView() {
         refreshReviewList();
         reviewListView.setItems(reviews);
         reviewListView.setCellFactory(lv -> new ListCell<>() {
@@ -31,8 +34,6 @@ public class MyReviewsController {
         reviewListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
                 Review selectedReview = reviewListView.getSelectionModel().getSelectedItem();
-                // TODO: get rid of selected review label, replace w/ commented code
-                selectedReviewLabel.setText("You selected: " + selectedReview.toString());
                 // TODO: mainController.switchToCourseReviews(reviewService.getCourse(review);
             }
         });
