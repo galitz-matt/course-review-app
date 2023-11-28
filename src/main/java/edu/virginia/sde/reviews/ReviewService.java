@@ -49,7 +49,7 @@ public class ReviewService {
 
     public String getReviewString(Review review) {
         var stringBuilder = new StringBuilder();
-        var course = getCourseByID();
+        var course = getCourseByID(review.getCourseId());
         stringBuilder.append(course.getSubject())
                 .append(" ")
                 .append(course.getNumber())
