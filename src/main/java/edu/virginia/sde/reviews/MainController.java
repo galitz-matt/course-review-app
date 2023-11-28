@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.imageio.stream.ImageInputStream;
 import java.io.IOException;
 
 public class MainController {
@@ -12,7 +13,9 @@ public class MainController {
     private Scene loginScene;
     private Scene newUserScene;
     private Scene courseSelectionScene;
+    private Scene addCourseScene;
     private CourseSearchController courseSearchController;
+    private AddCourseController addCourseController;
 
     public MainController(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -41,6 +44,11 @@ public class MainController {
             courseSelectionScene = new Scene(courseSearchLoader.load());
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
+
+            var addCourseLoader = new FXMLLoader(getClass().getResource("AddCourseScreen.fxml"));
+            addCourseScene = new Scene(addCourseLoader.load());
+            addCourseController = addCourseLoader.getController();
+            addCourseController.setMainController(this);
         } catch (Exception e) {
             throw new RuntimeException("Failed to load scenes");
         }
@@ -59,7 +67,13 @@ public class MainController {
     public void switchToCourseSelection(User user) {
         primaryStage.setScene(courseSelectionScene);
         courseSearchController.setUser(user);
-        courseSearchController.createCourses();
+        courseSearchController.refreshCourseList();
+        primaryStage.show();
+    }
+
+    public void switchToAddCourse(User user) {
+        primaryStage.setScene(addCourseScene);
+        addCourseController.setUser(user);
         primaryStage.show();
     }
 

@@ -20,4 +20,15 @@ public class CourseService {
             throw new RuntimeException(e);
         }
     }
+
+    public void addCourse(Course course) {
+        try {
+            databaseDriver.connect();
+            databaseDriver.addCourse(course);
+            databaseDriver.commit();
+            databaseDriver.disconnect();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -4,22 +4,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.AddCourseController">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
     <Label fx:id="userLabel"/>
-    <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
-        <Label text="Subject:"/>
-        <TextField fx:id="subjectField"/>
-    </HBox>
-    <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
-        <Label text="Number:"/>
-        <TextField fx:id="numberField"/>
-    </HBox>
-    <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
-        <Label text="Title:"/>
-        <TextField fx:id="titleField"/>
-    </HBox>
-    <Button text="Add Course"/>
+    <GridPane VBox.vgrow="ALWAYS" hgap="10" vgap="10" alignment="CENTER">
+        <Label text="Subject:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="subjectField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Number:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="numberField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Title:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="titleField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Button text="Add Course" onAction="#handleAddCourseAction" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Button text="Go Back" onAction="#handleGoBackAction" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
 </VBox>
