@@ -10,4 +10,6 @@ public class ReviewService {
     }
 
     // TODO: addReview method, add review to DB, update avgRating
+    // TODO: getReviewsByUserID method
+    // TODO: getReviewsByCourseID method
 }
