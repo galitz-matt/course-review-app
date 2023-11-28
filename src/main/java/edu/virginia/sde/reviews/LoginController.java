@@ -29,7 +29,7 @@ public class LoginController {
         try {
             var user = userInfoService.getUser(username, password);
             clearControls();
-            mainController.switchToCourseSelection(user);
+            mainController.switchToCourseSearch(user);
         } catch (InvalidUsernameException e) {
             errorMessageLabel.setText("Username is incorrect or does not exist");
         } catch (IncorrectPasswordException e) {

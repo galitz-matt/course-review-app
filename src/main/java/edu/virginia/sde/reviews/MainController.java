@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 
 public class MainController {
@@ -93,7 +92,7 @@ public class MainController {
         primaryStage.show();
     }
 
-    public void switchToCourseSelection(User user) {
+    public void switchToCourseSearch(User user) {
         primaryStage.setScene(courseSelectionScene);
         courseSearchController.setUser(user);
         courseSearchController.refreshCourseList();

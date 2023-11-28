@@ -90,6 +90,6 @@ public class AddCourseController {
     public void handleGoBackAction() {
         clearTextFields();
         messageLabel.setText("");
-        mainController.switchToCourseSelection(user);
+        mainController.switchToCourseSearch(user);
     }
 }

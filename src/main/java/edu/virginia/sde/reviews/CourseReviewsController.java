@@ -97,6 +97,6 @@ public class CourseReviewsController {
 
     public void handleGoBackAction() {
         messageLabel.setText("");
-        mainController.switchToCourseSelection(user);
+        mainController.switchToCourseSearch(user);
     }
 }

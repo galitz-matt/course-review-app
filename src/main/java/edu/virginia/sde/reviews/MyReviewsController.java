@@ -58,7 +58,7 @@ public class MyReviewsController {
     }
 
     public void handleGoBackAction() {
-        mainController.switchToCourseSelection(user);
+        mainController.switchToCourseSearch(user);
     }
 
 }
