@@ -10,6 +10,7 @@ public class CourseReviewsController {
     private ReviewService reviewService;
     private User user;
     private Course course;
+    private Review userReview;
     private boolean initialized = false;
     @FXML
     private Label userLabel;
@@ -30,6 +31,7 @@ public class CourseReviewsController {
                 setText(empty ? null : reviewService.getReviewString(review));
             }
         });
+        userReview = reviewService.getReview(user.getId(), course.getId());
         // TODO: consider deleting code below, verify if these need to be clicked
 //        reviewListView.setOnMouseClicked(event -> {
 //            if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
@@ -67,15 +69,15 @@ public class CourseReviewsController {
     }
 
     public void handleAddReviewAction() {
-        // TODO: check if user has not submitted review
+        // TODO: check if user has not submitted review, (is userReview null)
         // If user has submitted review, display appropriate message e.g. already submitted review for this course
-        mainController.switchToSubmitReview(user, course);
+        mainController.switchToSubmitReview(user, course, userReview);
     }
 
     public void handleEditReviewAction() {
-        // TODO: check if user has submitted review
+        // TODO: check if user has submitted review, (is userReview not null)
         // If user has not submitted review, display appropriate message e.g. no review to edit for this course
-        mainController.switchToSubmitReview(user, course);
+        mainController.switchToSubmitReview(user, course, userReview);
     }
 
     public void handleGoBackAction() {

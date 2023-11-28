@@ -118,10 +118,11 @@ public class MainController {
         primaryStage.show();
     }
 
-    public void switchToSubmitReview(User user, Course course) {
+    public void switchToSubmitReview(User user, Course course, Review review) {
         primaryStage.setScene(submitReviewScene);
         submitReviewController.setUser(user);
         submitReviewController.setCourse(course);
+        submitReviewController.setUserReview(review);
         submitReviewController.initializeFields();
         primaryStage.show();
     }

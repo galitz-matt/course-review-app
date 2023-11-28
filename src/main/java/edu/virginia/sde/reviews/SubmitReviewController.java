@@ -10,7 +10,7 @@ public class SubmitReviewController {
     private ReviewService reviewService;
     private User user;
     private Course course;
-    private Review review;
+    private Review userReview;
     @FXML
     private Label userLabel;
     @FXML
@@ -36,10 +36,10 @@ public class SubmitReviewController {
                 }
             }
         });
-        if (reviewService.hasUserReviewedCourse(user.getId(), course.getId())) {
-            review = reviewService.getReview(user.getId(), course.getId());
-            ratingField.setText(String.valueOf(review.getRating()));
-            commentField.setText(review.getComment());
+        if (userReview != null) {
+            userReview = reviewService.getReview(user.getId(), course.getId());
+            ratingField.setText(String.valueOf(userReview.getRating()));
+            commentField.setText(userReview.getComment());
         }
     }
 
@@ -59,6 +59,10 @@ public class SubmitReviewController {
     public void setCourse(Course course) {
         this.course = course;
         courseLabel.setText("Reviewing for: " + course.getSubject() + " " + course.getNumber());
+    }
+
+    public void setUserReview(Review userReview) {
+        this.userReview = userReview;
     }
 
     public void clearFields() {
