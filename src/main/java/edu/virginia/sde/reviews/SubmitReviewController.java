@@ -36,11 +36,6 @@ public class SubmitReviewController {
                 }
             }
         });
-        if (userReview != null) {
-            userReview = reviewService.getReview(user.getId(), course.getId());
-            ratingField.setText(String.valueOf(userReview.getRating()));
-            commentField.setText(userReview.getComment());
-        }
     }
 
     public void setMainController(MainController mainController) {
