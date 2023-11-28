@@ -19,7 +19,8 @@ public class CourseReviewsController {
     @FXML
     private ListView<Review> reviewListView;
     private final ObservableList<Review> reviews = FXCollections.observableArrayList();
-    private Review selectedReview;
+    @FXML
+    private Label messageLabel;
 
     public void initializeReviewListView() {
         refreshReviewList();
@@ -80,6 +81,16 @@ public class CourseReviewsController {
         // If user has not submitted review, display appropriate message e.g. no review to edit for this course
         // ONLY SWITCH SCREENS IF HAS SUBMITTED REVIEW
         mainController.switchToSubmitReview(user, course, userReview);
+    }
+
+    public void handleDeleteReviewAction() {
+        if (userReview != null) {
+            reviewService.deleteReview(userReview);
+            userReview = null;
+            messageLabel.setText("Your review was deleted successfully");
+        } else {
+            messageLabel.setText("You have not reviewed this course");
+        }
     }
 
     public void handleGoBackAction() {

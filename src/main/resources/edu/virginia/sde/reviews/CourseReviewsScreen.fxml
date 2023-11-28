@@ -4,20 +4,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseReviewsController">
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseReviewsController">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <Label fx:id="userLabel"/>
-    <Label fx:id="courseLabel"/>
+    <HBox spacing="10" VBox.vgrow="ALWAYS">
+        <Label fx:id="userLabel"/>
+    </HBox>
+    <HBox spacing="10" VBox.vgrow="ALWAYS">
+        <Label fx:id="courseLabel"/>
+    </HBox>
     <ListView fx:id="reviewListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>
     </ListView>
+    <Label fx:id="messageLabel"/>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
-        <Button text="Add Your Review" onAction="#handleAddReviewAction"/>
+        <Button text="Add Review" onAction="#handleAddReviewAction"/>
         <Button text="Edit Your Review" onAction="#handleEditReviewAction"/>
+        <Button text="Delete Your Review" onAction="#handleDeleteReviewAction"/>
         <Button text="Go Back" onAction="#handleGoBackAction"/>
     </HBox>
 </VBox>
