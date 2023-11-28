@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 
 public class MainController {
@@ -18,9 +19,9 @@ public class MainController {
     private AddCourseController addCourseController;
     private MyReviewsController myReviewsController;
 
-    public MainController(Stage primaryStage) throws IOException {
+    public MainController(Stage primaryStage, DatabaseDriver databaseDriver) throws IOException {
         this.primaryStage = primaryStage;
-        this.databaseDriver = new DatabaseDriver(new Configuration());
+        this.databaseDriver = databaseDriver;
         initScenes();
     }
 

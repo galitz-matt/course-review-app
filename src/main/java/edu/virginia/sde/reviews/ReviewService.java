@@ -46,4 +46,19 @@ public class ReviewService {
             throw new RuntimeException(e);
         }
     }
+
+    public String getReviewString(Review review) {
+        var stringBuilder = new StringBuilder();
+        var course = getCourseByID();
+        stringBuilder.append(course.getSubject())
+                .append(" ")
+                .append(course.getNumber())
+                .append(" - ")
+                .append(review.getRating());
+        return stringBuilder.toString();
+    }
+
+    public Course getCourseByID() {
+
+    }
 }

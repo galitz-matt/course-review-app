@@ -134,20 +134,6 @@ public class DatabaseDriver {
         }
     }
 
-    public List<User> getAllUsers() throws SQLException{
-        checkConnection();
-        var users = new ArrayList<User>();
-        var query = "SELECT * FROM Users";
-        try (var statement = connection.prepareStatement(query)) {
-            try (var resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    users.add(buildUser(resultSet));
-                }
-            }
-        }
-        return users;
-    }
-
     public List<Course> getAllCourses() throws SQLException{
         checkConnection();
         var courses = new ArrayList<Course>();
@@ -217,12 +203,25 @@ public class DatabaseDriver {
     }
 
     public User getUser(String username) throws SQLException {
-        String query = "SELECT * FROM USERS WHERE Username = ?;";
+        String query = "SELECT * FROM Users WHERE Username = ?;";
         try (var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, username);
             try (var resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return buildUser(resultSet);
+                }
+            }
+        }
+        return null;
+    }
+
+    public Course getCourse(int id) throws SQLException {
+        String query = "SELECT * FROM Courses WHERE ID = ?;";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            try (var resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return buildCourse(resultSet);
                 }
             }
         }
@@ -288,20 +287,5 @@ public class DatabaseDriver {
             }
         }
         return false;
-    }
-
-    public void clearTables() throws SQLException {
-        checkConnection();
-        var deleteUsers = "DELETE FROM Users;";
-        var deleteCourses = "DELETE FROM Courses;";
-        var deleteReviews = "DELETE FROM Reviews;";
-        try (var statement = connection.createStatement()) {
-            statement.execute(deleteUsers);
-            statement.execute(deleteCourses);
-            statement.execute(deleteReviews);
-        } catch (SQLException e) {
-            rollback();
-            throw e;
-        }
     }
 }
