@@ -232,6 +232,21 @@ public class DatabaseDriver {
         return null;
     }
 
+    public Review getReviewByForeignKeys(int userId, int courseId) throws SQLException {
+        checkConnection();
+        var query = "SELECT * FROM REVIEWS WHERE UserID = ? AND CourseID = ?;";
+        try (var preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, courseId);
+            try (var resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return buildReview(resultSet);
+                }
+            }
+        }
+        return null;
+    }
+
     public void updateAverageRating(int courseId) throws SQLException{
         checkConnection();
         var avgRatingQuery = "SELECT AVG(Rating) AS AverageRating FROM Reviews WHERE CourseID = ?;";

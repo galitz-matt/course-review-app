@@ -8,6 +8,7 @@ public class SubmitReviewController {
     private ReviewService reviewService;
     private User user;
     private Course course;
+    private Review review;
     @FXML
     private Label userLabel;
     @FXML
@@ -20,7 +21,11 @@ public class SubmitReviewController {
     private Label messageLabel;
 
     public void initializeFields() {
-
+        if (reviewService.hasUserReviewedCourse(user.getId(), course.getId())) {
+            review = reviewService.getReview(user.getId(), course.getId());
+            ratingField.setText(String.valueOf(review.getRating()));
+            commentField.setText(review.getComment());
+        }
     }
 
     public void setMainController(MainController mainController) {
