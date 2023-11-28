@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ReviewService {
-    private DatabaseDriver databaseDriver;
+    private final DatabaseDriver databaseDriver;
 
     public ReviewService(DatabaseDriver databaseDriver) {
         this.databaseDriver = databaseDriver;

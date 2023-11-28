@@ -127,7 +127,7 @@ public class DatabaseDriver {
             preparedStatement.setInt(3, review.getRating());
             preparedStatement.setString(4, review.getComment());
             preparedStatement.executeUpdate();
-            //updateCourseAverageRating(review.getCourseId());
+            updateAverageRating(review.getCourseId());
         } catch (SQLException e) {
             rollback();
             throw e;
