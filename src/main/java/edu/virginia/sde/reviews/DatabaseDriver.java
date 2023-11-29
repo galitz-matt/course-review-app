@@ -86,7 +86,7 @@ public class DatabaseDriver {
                         UserID INTEGER NOT NULL,
                         Rating INTEGER NOT NULL,
                         Comment TEXT,
-                        TimeStamp INTEGER NOT NULL,
+                        TimeStamp TIMESTAMP NOT NULL,
                         FOREIGN KEY (CourseID) REFERENCES Courses (ID) ON DELETE CASCADE,
                         FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE);
                         """
@@ -128,7 +128,7 @@ public class DatabaseDriver {
             preparedStatement.setInt(2, review.getUserId());
             preparedStatement.setInt(3, review.getRating());
             preparedStatement.setString(4, review.getComment());
-            preparedStatement.setLong(5, review.getTimeStamp());
+            preparedStatement.setTimestamp(5, review.getTimeStamp());
             preparedStatement.executeUpdate();
             updateAverageRating(review.getCourseId());
         } catch (SQLException e) {
@@ -216,7 +216,7 @@ public class DatabaseDriver {
         var userID = resultSet.getInt(REVIEWS_USERID);
         var rating = resultSet.getInt(REVIEWS_RATING);
         var comment = resultSet.getString(REVIEWS_COMMENT);
-        var timeStamp = resultSet.getLong(REVIEWS_TIMESTAMP);
+        var timeStamp = resultSet.getTimestamp(REVIEWS_TIMESTAMP);
         return new Review(id, courseID, userID, rating, comment, timeStamp);
     }
 

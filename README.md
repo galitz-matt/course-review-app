@@ -2,43 +2,30 @@
 # Homework 6 - Responding to Change
 
 ## Authors
-1) Name, netid, [GitHub profile name]
-2) Name, netid, [GitHub profile name]
-3) Name, netid, [GitHub profile name]
-4) Name, netid, [GitHub profile name]
+1) Matthew Galitz, ykk6rh, galitz-matt
+2) Dor Frechter, huz4kk, dor.frechter
 
 ## To Run
-
-[Add a brief description of which .java file to run, and what vm arguments are needed]
+1) Install JavaFX SDK (version 17.0.9)
+2) Add VM arguments below to run configuration in MainApplication.java:<br>
+<code>--module-path "C:\path\to\javafx-sdk-17.0.9\lib" --add-modules javafx.controls,javafx.fxml</code>
+3) Run MainApplication
 
 ## Contributions
 
 List the primary contributions of each author. It is recommended to update this with your contributions after each coding session.:
 
-### [Author 1 - replace this with their name]
+### Matthew Galitz
 
-* Author 1 contributions
+* Author 1 Contributions
 * as a bulleted list
 * each line starts with an asterisk and a space
 
-### [Author 2 - replace this with their name]
+### Dor Frechter
 
 * Author 2 contributions
 * as a bulleted list
 * each line starts with an asterisk and a space
 
-### [Author 3 - replace this with their name]
-
-* Author 3 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
-
-### [Author 4 - replace this with their name]
-
-* Author 4 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
-
 ## Issues
-
-List any known issues (bugs, incorrect behavior, etc.) at the time of submission.
+N/A

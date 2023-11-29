@@ -1,14 +1,16 @@
 package edu.virginia.sde.reviews;
 
+import java.sql.Timestamp;
+
 public class Review {
     private int id;
     private final int courseId;
     private final int userId;
     private final int rating;
     private final String comment;
-    private final long timeStamp;
+    private final Timestamp timeStamp;
 
-    public Review(int courseId, int userId, int rating, String comment, long timeStamp) {
+    public Review(int courseId, int userId, int rating, String comment, Timestamp timeStamp) {
         this.courseId = courseId;
         this.userId = userId;
         this.rating = rating;
@@ -16,7 +18,7 @@ public class Review {
         this.timeStamp = timeStamp;
     }
 
-    public Review(int id, int courseId, int userId, int rating, String comment, long timeStamp) {
+    public Review(int id, int courseId, int userId, int rating, String comment, Timestamp timeStamp) {
         this.id = id;
         this.courseId = courseId;
         this.userId = userId;
@@ -48,7 +50,7 @@ public class Review {
         return comment;
     }
 
-    public long getTimeStamp() {
+    public Timestamp getTimeStamp() {
         return timeStamp;
     }
 }

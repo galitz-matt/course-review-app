@@ -3,6 +3,8 @@ package edu.virginia.sde.reviews;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.Timestamp;
+
 public class SubmitReviewController {
     private MainController mainController;
     private ReviewService reviewService;
@@ -61,7 +63,7 @@ public class SubmitReviewController {
     }
 
     public void handleSubmitAction() {
-        var timeStamp = System.currentTimeMillis();
+        var timeStamp = new Timestamp(System.currentTimeMillis());
         var rating = Integer.parseInt(ratingField.getText());
         var comment = commentField.getText().isEmpty() ? "N/A" : commentField.getText();
         var newReview = new Review(course.getId(), user.getId(), rating, comment, timeStamp);
