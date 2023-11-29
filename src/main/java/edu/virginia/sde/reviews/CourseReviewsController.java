@@ -29,7 +29,7 @@ public class CourseReviewsController {
             @Override
             protected void updateItem(Review review, boolean empty) {
                 super.updateItem(review, empty);
-                setText(empty ? null : reviewService.getReviewString(review));
+                setText(empty ? null : reviewService.getReviewStringNoCourseName(review));
             }
         });
         // TODO: consider deleting code below, verify if these need to be clicked

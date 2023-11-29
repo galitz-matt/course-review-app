@@ -91,4 +91,17 @@ public class ReviewService {
                 .append(review.getTimeStamp());
         return stringBuilder.toString();
     }
+
+    public String getReviewStringNoCourseName(Review review) {
+        var stringBuilder = new StringBuilder();
+        var course = getCourseByID(review.getCourseId());
+        stringBuilder.append("Rating: ")
+                .append(review.getRating())
+                .append("/5")
+                .append("\nComment: ")
+                .append(review.getComment())
+                .append("\nTime Stamp: ")
+                .append(review.getTimeStamp());
+        return stringBuilder.toString();
+    }
 }
