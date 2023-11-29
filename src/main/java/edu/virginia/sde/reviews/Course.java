@@ -56,7 +56,8 @@ public class Course {
                 .append("\n Rating: ");
         if (avgRating != -1) {
             var truncated = BigDecimal.valueOf(getAvgRating()).setScale(2, RoundingMode.DOWN);
-            stringBuilder.append(truncated);
+            stringBuilder.append(truncated)
+                    .append("/5.00");
         } else {
             stringBuilder.append("N/A");
         }

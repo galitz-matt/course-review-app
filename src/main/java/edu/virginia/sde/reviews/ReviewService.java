@@ -84,6 +84,7 @@ public class ReviewService {
                 .append(course.getNumber())
                 .append("\n Rating: ")
                 .append(review.getRating())
+                .append("/5")
                 .append("\n Comment: ")
                 .append(review.getComment())
                 .append("\n Time Stamp: ")
