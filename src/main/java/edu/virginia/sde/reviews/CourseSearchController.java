@@ -6,6 +6,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.Timestamp;
 import java.util.function.UnaryOperator;
 
 public class CourseSearchController {
