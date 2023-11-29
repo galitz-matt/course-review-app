@@ -16,5 +16,6 @@ public class MainApplication extends Application {
         databaseDriver.disconnect();
         var mainController = new MainController(primaryStage, databaseDriver);
         mainController.switchToLogin();
+
     }
 }

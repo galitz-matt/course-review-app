@@ -3,16 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.LoginController">
-   <GridPane VBox.vgrow="ALWAYS" hgap="10" vgap="10" alignment="CENTER">
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.LoginController" stylesheets="/edu/virginia/sde/reviews/LoginStyleSheet.css">
+   <GridPane VBox.vgrow="ALWAYS" hgap="10" vgap="10" alignment="CENTER" styleClass="grid-pane">
       <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
       <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
       <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
       <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
    </GridPane>
-   <Label fx:id="errorMessageLabel"/>
-   <HBox spacing="10" alignment="CENTER">
-      <Button text="Log In" minWidth="80" onAction="#handleLoginAction"/>
+   <Label fx:id="errorMessageLabel" styleClass="check-box"/>
+   <HBox spacing="10" alignment="CENTER" styleClass="check-box">
+      <Button text="Log In" minWidth="80" onAction="#handleLoginAction" />
       <Button text="New User" minWidth="80" onAction="#handleNewUserAction"/>
       <Button text="Exit" fx:id="exitButton" minWidth="80" onAction="#handleExitAction"/>
    </HBox>

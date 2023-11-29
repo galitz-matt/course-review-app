@@ -1,0 +1,9 @@
+.grid-pane {
+    -fx-background-image: url('/images/uvawhitelogo.jpeg');
+    -fx-background-size: cover; /* This will ensure that the image covers the entire GridPane */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.check-box{
+    -fx-background-color: white;
+}
