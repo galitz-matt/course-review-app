@@ -1,0 +1,12 @@
+.root, .grid-pane {
+    -fx-background-color: white;
+}
+
+.label, .button {
+    -fx-font-weight: bold; /* TODO: Change the font to whatever, match it across all screens */
+}
+
+.button {
+    -fx-background-color: #232D4B;
+    -fx-text-fill: white;
+}
