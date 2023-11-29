@@ -4,6 +4,15 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
-.check-box{
+.root, .grid-pane, .check-box {
     -fx-background-color: white;
+}
+
+.label, .button {
+    -fx-font-weight: bold; /* TODO: Change the font to whatever, match it across all screens */
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: #232D4B; /* TODO: this is the UVA navy blue */
 }

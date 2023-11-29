@@ -33,13 +33,13 @@ public class MainController {
             var reviewService = new ReviewService(databaseDriver);
 
             var loginLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
-            loginScene = new Scene(loginLoader.load(), 300, 200);
+            loginScene = new Scene(loginLoader.load(), 500, 325);
             LoginController loginController = loginLoader.getController();
             loginController.setMainController(this);
             loginController.setUserInfoService(userInfoService);
 
             var newUserLoader = new FXMLLoader(getClass().getResource("NewUserScreen.fxml"));
-            newUserScene = new Scene(newUserLoader.load(), 300, 200);
+            newUserScene = new Scene(newUserLoader.load(), 500, 325);
             NewUserController newUserController = newUserLoader.getController();
             newUserController.setMainController(this);
             newUserController.setUserInfoService(userInfoService);
