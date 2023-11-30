@@ -8,8 +8,8 @@
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
-    <Label text="Your Reviews:" style="-fx-text-fill: white; -fx-background-color: #1c3d5f" />
+    <Label fx:id="userLabel" style="-fx-text-fill: black; -fx-background-color:white "/>
+    <Label text="Your Reviews:" style="-fx-text-fill: black; -fx-background-color: white" />
     <ListView fx:id="reviewListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>

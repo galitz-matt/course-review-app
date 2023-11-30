@@ -1,5 +1,5 @@
 .root, .grid-pane {
-    -fx-background-image: url('/images/uvawhitelogo.jpeg');
+    -fx-background-image: url('/images/uva_white_background_2.jpeg');
     -fx-background-size: cover; /* This will ensure that the image covers the entire GridPane */
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;

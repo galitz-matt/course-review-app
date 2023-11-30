@@ -9,17 +9,17 @@
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
-        <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+        <Label fx:id="userLabel" style="-fx-text-fill: black; -fx-background-color:white "/>
     </HBox>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
-        <Label fx:id="courseLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+        <Label fx:id="courseLabel" style="-fx-text-fill: black; -fx-background-color:white "/>
     </HBox>
     <ListView fx:id="reviewListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>
     </ListView>
-    <Label fx:id="messageLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+    <Label fx:id="messageLabel" style="-fx-text-fill: black; -fx-background-color:white "/>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
         <Button text="Add Review" onAction="#handleAddReviewAction"/>
         <Button text="Edit Your Review" onAction="#handleEditReviewAction"/>

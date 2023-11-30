@@ -8,16 +8,16 @@
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+    <Label fx:id="userLabel" style="-fx-text-fill: black;  -fx-font-weight: bold"/>
     <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
-        <Label text="Subject:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+        <Label text="Subject:" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-background-color: white" />
         <TextField fx:id="subjectFilter"/>
-        <Label text="Number:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+        <Label text="Number:" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-background-color: white"/>
         <TextField fx:id="numberFilter"/>
-        <Label text="Title:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+        <Label text="Title:" style="-fx-text-fill: black;  -fx-font-weight: bold; -fx-background-color: white"/>
         <TextField fx:id="titleFilter"/>
     </HBox>
-    <Label text="Courses:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+    <Label text="Courses:" style="-fx-text-fill: black; -fx-font-weight: bold"/>
     <ListView fx:id="courseListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>

@@ -39,37 +39,37 @@ public class MainController {
             loginController.setUserInfoService(userInfoService);
 
             var newUserLoader = new FXMLLoader(getClass().getResource("NewUserScreen.fxml"));
-            newUserScene = new Scene(newUserLoader.load(), 500, 325);
+            newUserScene = new Scene(newUserLoader.load(), 500, 400);
             NewUserController newUserController = newUserLoader.getController();
             newUserController.setMainController(this);
             newUserController.setUserInfoService(userInfoService);
 
             var courseSearchLoader = new FXMLLoader(getClass().getResource("CourseSearchScreen.fxml"));
-            courseSelectionScene = new Scene(courseSearchLoader.load());
+            courseSelectionScene = new Scene(courseSearchLoader.load(), 800, 520);
             courseSearchController = courseSearchLoader.getController();
             courseSearchController.setMainController(this);
             courseSearchController.setCourseService(courseService);
             courseSearchController.initializeCourseListView();
 
             var addCourseLoader = new FXMLLoader(getClass().getResource("AddCourseScreen.fxml"));
-            addCourseScene = new Scene(addCourseLoader.load(), 300, 200);
+            addCourseScene = new Scene(addCourseLoader.load(), 500, 350);
             addCourseController = addCourseLoader.getController();
             addCourseController.setMainController(this);
 
             var courseReviewsLoader = new FXMLLoader(getClass().getResource("CourseReviewsScreen.fxml"));
-            courseReviewsScene = new Scene(courseReviewsLoader.load(), 500, 300);
+            courseReviewsScene = new Scene(courseReviewsLoader.load(), 680, 465);
             courseReviewsController = courseReviewsLoader.getController();
             courseReviewsController.setMainController(this);
             courseReviewsController.setReviewService(reviewService);
 
             var submitReviewLoader = new FXMLLoader(getClass().getResource("SubmitReviewScreen.fxml"));
-            submitReviewScene = new Scene(submitReviewLoader.load());
+            submitReviewScene = new Scene(submitReviewLoader.load(), 480,430);
             submitReviewController = submitReviewLoader.getController();
             submitReviewController.setMainController(this);
             submitReviewController.setReviewService(reviewService);
 
             var myReviewsLoader = new FXMLLoader(getClass().getResource("MyReviewsScreen.fxml"));
-            myReviewsScene = new Scene(myReviewsLoader.load(), 500, 300);
+            myReviewsScene = new Scene(myReviewsLoader.load(), 650, 410);
             myReviewsController = myReviewsLoader.getController();
             myReviewsController.setMainController(this);
             myReviewsController.setReviewService(reviewService);
