@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<?import javafx.scene.control.skin.TitledPaneSkin.TitleRegion?>
 <VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.LoginController" stylesheets="/edu/virginia/sde/reviews/LoginStyleSheet.css">
    <padding>
       <Insets top="10" right="10" bottom="10" left="10"/>
