@@ -9,18 +9,18 @@
         <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
     <HBox>
-        <Label fx:id="userLabel" style="-fx-text-fill: white;"/>
+        <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
     </HBox>
     <HBox>
-        <Label fx:id="courseLabel" style="-fx-text-fill: white;" />
+        <Label fx:id="courseLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f " />
     </HBox>
     <GridPane VBox.vgrow="ALWAYS">
-        <Label text="Rating: " GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: white;" />
+        <Label text="Rating: " GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: white; -fx-background-color:#1c3d5f " />
         <TextField fx:id="ratingField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label text="Comment: " GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: white;" />
+        <Label text="Comment: " GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: white; -fx-background-color:#1c3d5f " />
         <TextField fx:id="commentField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </GridPane>
-    <Label fx:id="messageLabel" style="-fx-text-fill: white;" />
+    <Label fx:id="messageLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f " />
     <HBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
         <Button text="Submit" onAction="#handleSubmitAction"/>
         <Button text="Go Back" onAction="#handleGoBackAction"/>
