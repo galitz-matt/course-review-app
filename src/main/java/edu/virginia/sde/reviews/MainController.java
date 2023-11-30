@@ -39,7 +39,7 @@ public class MainController {
             loginController.setUserInfoService(userInfoService);
 
             var newUserLoader = new FXMLLoader(getClass().getResource("NewUserScreen.fxml"));
-            newUserScene = new Scene(newUserLoader.load(), 500, 400);
+            newUserScene = new Scene(newUserLoader.load(), 500, 325);
             NewUserController newUserController = newUserLoader.getController();
             newUserController.setMainController(this);
             newUserController.setUserInfoService(userInfoService);

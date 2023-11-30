@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.control.skin.TitledPaneSkin.TitleRegion?>
 <VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.LoginController" stylesheets="/edu/virginia/sde/reviews/LoginStyleSheet.css">
    <padding>
       <Insets top="10" right="10" bottom="10" left="10"/>
@@ -15,7 +16,7 @@
       <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
    </GridPane>
    <Label fx:id="errorMessageLabel" styleClass="check-box"/>
-   <HBox spacing="0" alignment="CENTER" styleClass="check-box">
+   <HBox spacing="10" alignment="CENTER" styleClass="check-box">
       <Button text="Log In" minWidth="80" onAction="#handleLoginAction" />
       <Button text="New User" minWidth="80" onAction="#handleNewUserAction"/>
       <Button text="Exit" fx:id="exitButton" minWidth="80" onAction="#handleExitAction"/>

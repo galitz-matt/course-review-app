@@ -63,16 +63,20 @@ public class SubmitReviewController {
     }
 
     public void handleSubmitAction() {
-        var timeStamp = new Timestamp(System.currentTimeMillis());
-        var rating = Integer.parseInt(ratingField.getText());
-        var comment = commentField.getText().isEmpty() ? "N/A" : commentField.getText();
-        var newReview = new Review(course.getId(), user.getId(), rating, comment, timeStamp);
-        if (userReview != null) {
-            reviewService.deleteReview(userReview);
+        try {
+            var timeStamp = new Timestamp(System.currentTimeMillis());
+            var rating = Integer.parseInt(ratingField.getText());
+            var comment = commentField.getText().isEmpty() ? "N/A" : commentField.getText();
+            var newReview = new Review(course.getId(), user.getId(), rating, comment, timeStamp);
+            if (userReview != null) {
+                reviewService.deleteReview(userReview);
+            }
+            reviewService.addReview(newReview);
+            userReview = newReview;
+            clearFields();
+        } catch (NumberFormatException e) {
+            messageLabel.setText("Rating is empty");
         }
-        reviewService.addReview(newReview);
-        userReview = newReview;
-        clearFields();
     }
 
     public void handleGoBackAction() {
