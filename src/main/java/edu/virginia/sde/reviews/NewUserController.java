@@ -33,7 +33,7 @@ public class NewUserController {
         } catch (InvalidUsernameException e) {
             messageLabel.setText("Username is empty");
         } catch (UsernameNotAvailableException e) {
-            messageLabel.setText(String.format("Username \"%s\" is taken", username));
+            messageLabel.setText(String.format("Username \"%s\" is already in use", username));
         } catch (InvalidPasswordException e) {
             messageLabel.setText("Password must be at least 8 characters");
         } catch (IncorrectPasswordException e) {
