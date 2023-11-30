@@ -3,7 +3,7 @@
 
 ## Authors
 1) Matthew Galitz, ykk6rh, galitz-matt
-2) Dor Frechter, huz4kk, dor.frechter
+2) Dor Frechter, huz4kk, dorfrechter
 
 ## To Run
 1) Install JavaFX SDK (version 17.0.9)

@@ -4,22 +4,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseReviewsController">
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseReviewsController" stylesheets="/edu/virginia/sde/reviews/CourseReviewsStyleSheet.css">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
-        <Label fx:id="userLabel"/>
+        <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
     </HBox>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
-        <Label fx:id="courseLabel"/>
+        <Label fx:id="courseLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
     </HBox>
     <ListView fx:id="reviewListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>
         </VBox.margin>
     </ListView>
-    <Label fx:id="messageLabel"/>
+    <Label fx:id="messageLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
         <Button text="Add Review" onAction="#handleAddReviewAction"/>
         <Button text="Edit Your Review" onAction="#handleEditReviewAction"/>

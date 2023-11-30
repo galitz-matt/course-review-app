@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.MyReviewsController">
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.MyReviewsController" stylesheets="/edu/virginia/sde/reviews/MyReviewsStyleSheet.css">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <Label fx:id="userLabel"/>
-    <Label text="Your Reviews:"/>
+    <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
+    <Label text="Your Reviews:" style="-fx-text-fill: white; -fx-background-color: #1c3d5f" />
     <ListView fx:id="reviewListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>

@@ -4,20 +4,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseSearchController">
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.CourseSearchController" stylesheets="/edu/virginia/sde/reviews/CourseSearchStyleSheet.css">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <Label fx:id="userLabel"/>
+    <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
     <HBox VBox.vgrow="ALWAYS" spacing="10" alignment="CENTER">
-        <Label text="Subject:"/>
+        <Label text="Subject:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
         <TextField fx:id="subjectFilter"/>
-        <Label text="Number:"/>
+        <Label text="Number:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
         <TextField fx:id="numberFilter"/>
-        <Label text="Title:"/>
+        <Label text="Title:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
         <TextField fx:id="titleFilter"/>
     </HBox>
-    <Label text="Courses:"/>
+    <Label text="Courses:" style="-fx-text-fill: white; -fx-background-color:#1c3d5f "/>
     <ListView fx:id="courseListView" VBox.vgrow="ALWAYS" prefWidth="200" prefHeight="300">
         <VBox.margin>
             <Insets top="10" bottom="10" right="10" left="10"/>
