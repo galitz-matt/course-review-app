@@ -17,15 +17,11 @@ List the primary contributions of each author. It is recommended to update this 
 
 ### Matthew Galitz
 
-* Author 1 Contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
+* worked with the database and did the back end.
 
 ### Dor Frechter
 
-* Author 2 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
+* worked on database driver and the front end of the app.
 
 ## Issues
 N/A
