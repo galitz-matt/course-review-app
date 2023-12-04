@@ -13,6 +13,7 @@ public class CourseService {
     public List<Course> getCourses() {
         try {
             databaseDriver.connect();
+            databaseDriver.createTables();
             var courses = databaseDriver.getAllCourses();
             databaseDriver.disconnect();
             return courses;
