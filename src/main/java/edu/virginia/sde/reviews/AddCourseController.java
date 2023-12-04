@@ -73,10 +73,10 @@ public class AddCourseController {
         if (!subject.matches("[a-zA-Z]{2,4}")) {
             throw new InvalidSubjectException();
         }
-        if (number.length() != 4) {
+        if (!number.matches("\\d{4}")) {
             throw new InvalidNumberException();
         }
-        if (title.length() < 2) {
+        if (title.length() < 2 || title.length() > 50) {
             throw new InvalidTitleException();
         }
     }

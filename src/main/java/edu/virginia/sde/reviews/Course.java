@@ -50,7 +50,7 @@ public class Course {
         var stringBuilder = new StringBuilder();
         stringBuilder.append(subject)
                 .append(" ")
-                .append(number)
+                .append(getNumberAsString())
                 .append(": ")
                 .append(title)
                 .append("\n Rating: ");
@@ -62,5 +62,10 @@ public class Course {
             stringBuilder.append("N/A");
         }
         return stringBuilder.toString();
+    }
+
+    private String getNumberAsString() {
+        var numberString = String.valueOf(number);
+        return "0".repeat(4 - numberString.length()) + numberString;
     }
 }
