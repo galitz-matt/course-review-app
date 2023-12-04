@@ -9,7 +9,7 @@
 1) Install JavaFX SDK (version 17.0.9)
 2) Add VM arguments below to run configuration in MainApplication.java:<br>
 <code>--module-path "C:\path\to\javafx-sdk-17.0.9\lib" --add-modules javafx.controls,javafx.fxml</code>
-3) Run MainApplication
+3) Run MainApplication.main()
 
 ## Contributions
 
