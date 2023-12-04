@@ -62,10 +62,10 @@ public class CourseSearchController {
         var numberFilterText = numberFilter.getText();
         var titleFilterText = titleFilter.getText().toLowerCase();
         filteredData.setPredicate(course -> {
-            if (!subjectFilterText.isEmpty() && !course.getSubject().toLowerCase().contains(subjectFilterText)) {
+            if (!subjectFilterText.isEmpty() && !course.getSubject().toLowerCase().equals(subjectFilterText)) {
                 return false;
             }
-            if (!numberFilterText.isEmpty() && !String.valueOf(course.getNumber()).contains(numberFilterText)) {
+            if (!numberFilterText.isEmpty() && !String.valueOf(course.getNumber()).equals(numberFilterText)) {
                 return false;
             }
             if (!titleFilterText.isEmpty() && !course.getTitle().toLowerCase().contains(titleFilterText)) {
