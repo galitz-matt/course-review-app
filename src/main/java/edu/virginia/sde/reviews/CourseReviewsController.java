@@ -32,12 +32,6 @@ public class CourseReviewsController {
                 setText(empty ? null : reviewService.getReviewStringNoCourseName(review));
             }
         });
-        // TODO: consider deleting code below, verify if these need to be clicked
-//        reviewListView.setOnMouseClicked(event -> {
-//            if (event.getClickCount() == 2 && !reviewListView.getSelectionModel().isEmpty()) {
-//                selectedReview = reviewListView.getSelectionModel().getSelectedItem();
-//            }
-//        });
         initialized = true;
     }
 

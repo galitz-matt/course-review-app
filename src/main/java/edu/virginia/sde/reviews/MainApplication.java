@@ -10,7 +10,7 @@ public class MainApplication extends Application {
     public static void main(String[] args) { launch(args); }
 
     @Override
-    public void start(Stage primaryStage) throws SQLException, IOException {
+    public void start(Stage primaryStage) throws SQLException {
         var databaseDriver = new DatabaseDriver(new Configuration());
         var mainController = new MainController(primaryStage, databaseDriver);
         mainController.switchToLogin();
