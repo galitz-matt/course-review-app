@@ -65,6 +65,7 @@ public class NewUserController {
     @FXML
     private void handleGoBackAction() {
         messageLabel.setText("");
+        clearTextFields();
         mainController.switchToLogin();
     }
 }
