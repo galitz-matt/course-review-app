@@ -17,11 +17,13 @@ List the primary contributions of each author. It is recommended to update this 
 
 ### Matthew Galitz
 
-* worked with the database and did the back end.
+* Developed back-end of app
+  * Business logic, controllers, services
 
 ### Dor Frechter
 
-* worked on database driver and the front end of the app.
+* Developed database driver and the front end of the app
+  * FXML files and style sheets
 
 ## Issues
 N/A
