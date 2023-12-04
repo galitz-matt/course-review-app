@@ -6,13 +6,20 @@
 }
 .label1 {
     -fx-text-fill: white;
-    -fx-background-color: #232D4B; /* TODO: this is the UVA navy blue */
+    -fx-background-color: #232D4B;
 }
 .label, .button {
-    -fx-font-weight: bold; /* TODO: Change the font to whatever, match it across all screens */
+    -fx-font-weight: bold;
 }
 
 .button {
     -fx-text-fill: white;
-    -fx-background-color: #232D4B; /* TODO: this is the UVA navy blue */
+    -fx-background-color: #232D4B;
+}
+
+.list-view .scroll-bar:vertical .track {
+    -fx-background-color: white;
+}
+.list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #232D4B;
 }
