@@ -26,4 +26,11 @@ List the primary contributions of each author. It is recommended to update this 
   * FXML files and style sheets
 
 ## Issues
-N/A
+We did not implement a search button for the course search screen,
+instead we had 3 text fields that act as filters which automatically
+updates the ListView of courses each time the user enters a character. 
+We felt this gave our application a more dynamic feel such that the
+application immediately reacts to input. Also, all courses that currently
+have reviews are shown when the filters are empty.
+This allows users to conveniently view the available courses, and
+reinforces the intuition of the filters. 
